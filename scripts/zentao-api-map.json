@@ -235,5 +235,637 @@
   "delete /doc/docs/{docID}": {"minVersion": ["22.5","biz13.5","max8.5","ipd5.5"]},
   "post /todos": {"minVersion": ["22.5","biz13.5","max8.5","ipd5.5"]},
   "put /todos/{todoID}": {"minVersion": ["22.5","biz13.5","max8.5","ipd5.5"]},
-  "delete /todos/{todoID}": {"minVersion": ["22.5","biz13.5","max8.5","ipd5.5"]}
+  "delete /todos/{todoID}": {"minVersion": ["22.5","biz13.5","max8.5","ipd5.5"]},
+  "post /projects/{projectID}/risks": {"module":"project","name":"createRisk","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /workflows": {"name":"createFlow","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflows": {"name":"flows","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflows/{flowID}": {"name":"getFlow","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflows/{flowID}": {"name":"updateFlow","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /workflows/{flowID}": {"name":"deleteFlow","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /workflows/{flowID}/copy": {"name":"copyFlow","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /workflows/{module}/fields": {"name":"createField","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflows/{module}/fields": {"name":"fields","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflowfields/{fieldID}": {"name":"getField","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflowfields/{fieldID}": {"name":"updateField","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /workflowfields/{fieldID}": {"name":"deleteField","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /workflows/{module}/actions": {"name":"createAction","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflows/{module}/actions": {"name":"actions","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflowactions/{actionID}": {"name":"getAction","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflowactions/{actionID}": {"name":"updateAction","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /workflowactions/{actionID}": {"name":"deleteAction","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflowactions/{actionID}/setVerification": {"name":"setActionVerification","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflowactions/{actionID}/setNotice": {"name":"setActionNotice","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflowactions/{actionID}/setJS": {"name":"setActionJS","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflowactions/{actionID}/setCSS": {"name":"setActionCSS","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /workflows/{module}/labels": {"name":"createLabel","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflows/{module}/labels": {"name":"labels","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflowlabels/{labelID}": {"name":"getLabel","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflowlabels/{labelID}": {"name":"updateLabel","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /workflowlabels/{labelID}": {"name":"deleteLabel","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /workflows/{module}/tables": {"name":"createTable","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflows/{module}/tables": {"name":"tables","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflowtables/{tableID}": {"name":"getTable","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflowtables/{tableID}": {"name":"updateTable","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /workflowtables/{tableID}": {"name":"deleteTable","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /workflowdatasources": {"name":"createDatasource","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflowdatasources": {"name":"datasources","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflowdatasources/{datasourceID}": {"name":"getDatasource","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflowdatasources/{datasourceID}": {"name":"updateDatasource","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /workflowdatasources/{datasourceID}": {"name":"deleteDatasource","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /workflowrules": {"name":"createRule","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflowrules": {"name":"rules","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflowrules/{ruleID}": {"name":"getRule","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflowrules/{ruleID}": {"name":"updateRule","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /workflowrules/{ruleID}": {"name":"deleteRule","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflows/{flowID}/setJS": {"name":"setFlowJS","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflows/{flowID}/setCSS": {"name":"setFlowCSS","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflows/{flowID}/setFulltextSearch": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflows/{module}/setApproval": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflows/{module}/setValue": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflows/{module}/setExport": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflows/{module}/setSearch": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflows/{flowID}/release": {"name":"releaseFlow","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflows/{flowID}/deactivate": {"name":"deactivateFlow","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /workflows/{flowID}/activate": {"name":"activateFlow","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /todos/{todoID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/tasks": {"name":"activityTasks","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/bugs": {"name":"activityBugs","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/stories": {"name":"activityStories","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/epics": {"name":"activityEpics","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/requirements": {"name":"activityRequirements","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/testtasks": {"name":"activityTestTasks","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/testcases": {"name":"activityTestCases","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/docs": {"name":"activityDocs","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/issues": {"name":"activityIssues","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/risks": {"name":"activityRisks","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/reviewissues": {"name":"activityReviewIssues","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/feedbacks": {"name":"activityFeedbacks","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/activity/audits": {"name":"activityAudits","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/reviewissues": {"name":"reviewIssues","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/audits": {"name":"audits","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /projects/{projectID}/processes": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /projects/{projectID}/processes": {"name":"setProject","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"action","resultType":"text"},
+  "get /executions/{executionID}/processes": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /executions/{executionID}/processes": {"name":"setExecution","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"action","resultType":"text"},
+  "post /auditplans": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /auditplans/{auditplanID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /auditplans/{auditplanID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /auditplans/{auditplanID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /auditplans/{auditplanID}/check": {"name":"check","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"action","resultType":"text"},
+  "post /projects/{projectID}/auditplans/batch": {"name":"batchCreate","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"action","resultType":"text"},
+  "get /projects/{projectID}/auditplans": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /executions/{executionID}/auditplans": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /projects/{projectID}/ncs": {"name":"createProject","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /projects/{projectID}/ncs": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /executions/{executionID}/ncs": {"name":"createExecution","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /executions/{executionID}/ncs": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /ncs/{ncID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /ncs/{ncID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /ncs/{ncID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/auditplans": {"name":"auditPlans","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /my/ncs": {"name":"ncs","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /projects/{projectID}/opportunities": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /projects/{projectID}/opportunities": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /projects/{projectID}/opportunities/batch": {"name":"batchCreate","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"action","resultType":"text"},
+  "get /executions/{executionID}/opportunities": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /opportunities/{opportunityID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /opportunities/{opportunityID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /opportunities/{opportunityID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /projects/{projectID}/deliverables": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /projects/{projectID}/deliverables": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /deliverables/{deliverableID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /deliverables/{deliverableID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /projects/{projectID}/baselines": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /projects/{projectID}/baselines": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /baselines/{baselineID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /baselines/{baselineID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /baselines/{baselineID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "post /projects/{projectID}/changes": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /projects/{projectID}/changes": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /changes/{changeID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /changes/{changeID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /changes/{changeID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /relations/{objectType}/{objectID}/candidates/{relatedObjectType}": {"name":"candidates","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"list","resultType":"list","resultGetter":"objects"},
+  "post /relations/{objectType}/{objectID}/{relatedObjectType}": {"name":"link","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"action","resultType":"text"},
+  "get /relations/{objectType}/{objectID}": {"name":"list","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"list","resultType":"list","resultGetter":"relations"},
+  "delete /relations/{objectType}/{objectID}/{relatedObjectType}/{relatedObjectID}/{relationName}": {"name":"unlink","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /workflowgroups": {"name":"list","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /resourcecalendars": {"name":"get","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"get","resultType":"object","resultGetter":"resourceCalendars"},
+  "post /projects/{projectID}/stories/link": {"module":"project","name":"linkStories","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"action","resultType":"text"},
+  "post /executions/{executionID}/stories/link": {"module":"execution","name":"linkStories","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"action","resultType":"text"},
+  "post /weeklies": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /weeklies": {"name":"list","minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /weeklies/{reportID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "put /weeklies/{reportID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "delete /weeklies/{reportID}": {"minVersion":["22.7","biz13.7","max8.7","ipd5.7"]},
+  "get /db/tables": {"name":"tables","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"list","resultType":"list","resultGetter":"tables"},
+  "get /db/tables/{tableName}": {
+    "name": "table",
+    "minVersion": [
+      "22.7",
+      "biz13.7",
+      "max8.7",
+      "ipd5.7"
+    ],
+    "type": "get",
+    "resultType": "object",
+    "description": "meta 返回表信息、主键和列定义；sql 返回包含表信息、dialect 和建表 SQL 的对象。",
+    "params": [
+      {
+        "name": "type",
+        "type": "string",
+        "description": "表结构返回格式",
+        "defaultValue": "meta",
+        "options": [
+          {
+            "value": "meta",
+            "label": "元数据"
+          },
+          {
+            "value": "sql",
+            "label": "建表 SQL"
+          }
+        ]
+      }
+    ],
+    "pathParams": {
+      "table": "数据库表名，例如 zt_config"
+    },
+    "path": "/db/tables/{table}"
+  },
+  "post /db/query": {"name":"query","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"list","resultType":"list","description":"返回查询结果行及分页；使用 raw: true 可获取原始响应中的 SQL、列信息和执行耗时。","pagerGetter":{"pageID":"page","recPerPage":"limit","recTotal":"total"},"resultGetter":"rows"},
+  "get /ai/knowledgelibs": {
+    "module": "knowledgelib",
+    "name": "list",
+    "minVersion": [
+      "22.7",
+      "biz13.7",
+      "max8.7",
+      "ipd5.7"
+    ],
+    "type": "list",
+    "resultType": "list",
+    "params": [
+      {
+        "name": "type",
+        "type": "string",
+        "description": "库类型，省略或空字符串时合并两类可见库",
+        "options": [
+          {
+            "value": "my",
+            "label": "我的知识库"
+          },
+          {
+            "value": "team",
+            "label": "组织知识库"
+          }
+        ]
+      },
+      {
+        "name": "keyword",
+        "type": "string",
+        "description": "知识库名称或描述关键词，首尾空白会被移除"
+      },
+      {
+        "name": "pageID",
+        "type": "number",
+        "defaultValue": 1,
+        "description": "页码，从 1 开始的正整数"
+      },
+      {
+        "name": "recPerPage",
+        "type": "number",
+        "defaultValue": 20,
+        "description": "每页条数，范围 1～100"
+      }
+    ],
+    "pagerGetter": "pager",
+    "resultGetter": "data"
+  },
+  "get /ai/knowledgelibs/{libID}/knowledges": {
+    "module": "knowledge",
+    "name": "list",
+    "minVersion": [
+      "22.7",
+      "biz13.7",
+      "max8.7",
+      "ipd5.7"
+    ],
+    "type": "list",
+    "resultType": "list",
+    "description": "返回当前用户可见的知识条目，按本地 ID 降序排列；不支持标题关键词查询。",
+    "params": [
+      {
+        "name": "type",
+        "type": "string",
+        "description": "知识类型，省略或空字符串表示不限；text/file 不可与非空 objectType 同时使用。",
+        "options": [
+          {
+            "value": "object",
+            "label": "对象知识"
+          },
+          {
+            "value": "text",
+            "label": "文本知识"
+          },
+          {
+            "value": "file",
+            "label": "文件知识"
+          }
+        ]
+      },
+      {
+        "name": "objectType",
+        "type": "string",
+        "description": "来源对象类型；单独指定时按 type=object 筛选，每次只接受一个编码。",
+        "options": [
+          {
+            "value": "story",
+            "label": "需求"
+          },
+          {
+            "value": "task",
+            "label": "任务"
+          },
+          {
+            "value": "case",
+            "label": "测试用例"
+          },
+          {
+            "value": "bug",
+            "label": "Bug"
+          },
+          {
+            "value": "plan",
+            "label": "产品计划"
+          },
+          {
+            "value": "release",
+            "label": "发布"
+          },
+          {
+            "value": "feedback",
+            "label": "反馈"
+          },
+          {
+            "value": "ticket",
+            "label": "工单"
+          },
+          {
+            "value": "doc",
+            "label": "文档（含接口文档）"
+          },
+          {
+            "value": "issue",
+            "label": "问题"
+          },
+          {
+            "value": "risk",
+            "label": "风险"
+          },
+          {
+            "value": "opportunity",
+            "label": "机会"
+          },
+          {
+            "value": "practice",
+            "label": "最佳实践"
+          },
+          {
+            "value": "component",
+            "label": "组件"
+          }
+        ]
+      },
+      {
+        "name": "pageID",
+        "type": "number",
+        "defaultValue": 1,
+        "description": "页码，从 1 开始的正整数"
+      },
+      {
+        "name": "recPerPage",
+        "type": "number",
+        "defaultValue": 20,
+        "description": "每页条数，范围 1～100"
+      }
+    ],
+    "pathParams": {
+      "libID": "本地知识库 ID，正整数"
+    },
+    "pagerGetter": "pager",
+    "resultGetter": "data"
+  },
+  "post /ai/knowledges/embeddingssearch": {
+    "module": "knowledge",
+    "name": "embeddingsSearch",
+    "minVersion": [
+      "22.7",
+      "biz13.7",
+      "max8.7",
+      "ipd5.7"
+    ],
+    "type": "list",
+    "resultType": "list",
+    "description": "仅检索已有索引，需 ai.searchknowledgelib 权限。按匹配度降序返回片段，不分页；用 knowledgeID 获取完整正文，chunkID 仅标识片段。",
+    "resultGetter": "data",
+    "requestBody": {
+      "required": true,
+      "mediaType": "application/json",
+      "schema": {
+        "type": "object",
+        "required": [
+          "keyword",
+          "libIDs"
+        ],
+        "example": {
+          "keyword": "如何处理接口请求超时",
+          "libIDs": [
+            12,
+            18
+          ],
+          "minSimilarity": 0.7,
+          "limit": 5
+        },
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "minLength": 1,
+            "description": "搜索问题或关键词，去除首尾空白后不能为空"
+          },
+          "libIDs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "本地知识库 ID 的非空正整数数组，例如 [12,18]；不接受字符串元素，重复 ID 自动去重"
+          },
+          "type": {
+            "type": "string",
+            "description": "知识类型，省略或空字符串表示不限；text/file 不可与非空 objectType 同时使用。",
+            "options": [
+              {
+                "value": "object",
+                "label": "对象知识"
+              },
+              {
+                "value": "text",
+                "label": "文本知识"
+              },
+              {
+                "value": "file",
+                "label": "文件知识"
+              }
+            ]
+          },
+          "objectType": {
+            "type": "string",
+            "description": "来源对象类型；单独指定时按 type=object 筛选，每次只接受一个编码。",
+            "options": [
+              {
+                "value": "story",
+                "label": "需求"
+              },
+              {
+                "value": "task",
+                "label": "任务"
+              },
+              {
+                "value": "case",
+                "label": "测试用例"
+              },
+              {
+                "value": "bug",
+                "label": "Bug"
+              },
+              {
+                "value": "plan",
+                "label": "产品计划"
+              },
+              {
+                "value": "release",
+                "label": "发布"
+              },
+              {
+                "value": "feedback",
+                "label": "反馈"
+              },
+              {
+                "value": "ticket",
+                "label": "工单"
+              },
+              {
+                "value": "doc",
+                "label": "文档（含接口文档）"
+              },
+              {
+                "value": "issue",
+                "label": "问题"
+              },
+              {
+                "value": "risk",
+                "label": "风险"
+              },
+              {
+                "value": "opportunity",
+                "label": "机会"
+              },
+              {
+                "value": "practice",
+                "label": "最佳实践"
+              },
+              {
+                "value": "component",
+                "label": "组件"
+              }
+            ]
+          },
+          "minSimilarity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "defaultValue": 0.5,
+            "description": "最小匹配度，范围 [0,1]"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "defaultValue": 5,
+            "description": "整次多库搜索最多返回的片段数，范围 1～100"
+          }
+        }
+      }
+    }
+  },
+  "get /ai/knowledges/{knowledgeID}": {"module":"knowledge","minVersion":["22.7","biz13.7","max8.7","ipd5.7"],"type":"get","resultType":"object","description":"返回已保存的完整正文及来源信息，不触发文件提取、知识同步或索引更新。按 contentType 解释正文，尚未保存正文时 content 可为空。","pathParams":{"knowledgeID":"本地知识条目 ID，正整数；不可使用 chunkID 或来源对象 objectID"},"resultGetter":"data"},
+  "post /ai/knowledges/search": {
+    "module": "knowledge",
+    "name": "search",
+    "minVersion": [
+      "22.7",
+      "biz13.7",
+      "max8.7",
+      "ipd5.7"
+    ],
+    "type": "list",
+    "resultType": "list",
+    "description": "需 ai.searchknowledgelib 权限，按字面文本匹配 title 或已保存的 content，不依赖向量索引。标题与正文分别匹配，单个关键词不能跨字段拼接。返回完整正文及 contentType，正文为空或 null 时返回空字符串；每条知识只返回一次，按知识 ID 降序分页。",
+    "pagerGetter": "pager",
+    "resultGetter": "data",
+    "requestBody": {
+      "required": true,
+      "mediaType": "application/json",
+      "schema": {
+        "type": "object",
+        "required": [
+          "keywords",
+          "libIDs"
+        ],
+        "example": {
+          "keywords": [
+            "登录",
+            "超时"
+          ],
+          "libIDs": [
+            12,
+            18
+          ],
+          "matchMode": "any",
+          "pageID": 1,
+          "recPerPage": 20
+        },
+        "properties": {
+          "keywords": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "非空关键词数组，每项去除首尾空白后为 1～200 个 Unicode 字符，去重后最多 20 项；%、_ 和反斜杠按普通字符匹配"
+          },
+          "libIDs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "本地知识库 ID 的非空正整数数组，例如 [12,18]；不接受字符串元素，重复 ID 自动去重"
+          },
+          "matchMode": {
+            "type": "string",
+            "defaultValue": "any",
+            "description": "any 表示任一关键词出现在标题或正文中；all 表示同一条知识的每个关键词均出现在标题或正文之一，可分别命中两个字段。仅省略时使用 any，空字符串和 null 无效",
+            "options": [
+              {
+                "value": "any",
+                "label": "任一关键词匹配标题或正文"
+              },
+              {
+                "value": "all",
+                "label": "全部关键词匹配同一条知识"
+              }
+            ]
+          },
+          "type": {
+            "type": "string",
+            "description": "知识类型，省略或空字符串表示不限；text/file 不可与非空 objectType 同时使用。",
+            "options": [
+              {
+                "value": "object",
+                "label": "对象知识"
+              },
+              {
+                "value": "text",
+                "label": "文本知识"
+              },
+              {
+                "value": "file",
+                "label": "文件知识"
+              }
+            ]
+          },
+          "objectType": {
+            "type": "string",
+            "description": "来源对象类型；单独指定时按 type=object 筛选，每次只接受一个编码。",
+            "options": [
+              {
+                "value": "story",
+                "label": "需求"
+              },
+              {
+                "value": "task",
+                "label": "任务"
+              },
+              {
+                "value": "case",
+                "label": "测试用例"
+              },
+              {
+                "value": "bug",
+                "label": "Bug"
+              },
+              {
+                "value": "plan",
+                "label": "产品计划"
+              },
+              {
+                "value": "release",
+                "label": "发布"
+              },
+              {
+                "value": "feedback",
+                "label": "反馈"
+              },
+              {
+                "value": "ticket",
+                "label": "工单"
+              },
+              {
+                "value": "doc",
+                "label": "文档（含接口文档）"
+              },
+              {
+                "value": "issue",
+                "label": "问题"
+              },
+              {
+                "value": "risk",
+                "label": "风险"
+              },
+              {
+                "value": "opportunity",
+                "label": "机会"
+              },
+              {
+                "value": "practice",
+                "label": "最佳实践"
+              },
+              {
+                "value": "component",
+                "label": "组件"
+              }
+            ]
+          },
+          "pageID": {
+            "type": "integer",
+            "minimum": 1,
+            "defaultValue": 1,
+            "description": "页码，从 1 开始的正整数"
+          },
+          "recPerPage": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "defaultValue": 20,
+            "description": "每页条数，范围 1～100"
+          }
+        }
+      }
+    }
+  }
 }

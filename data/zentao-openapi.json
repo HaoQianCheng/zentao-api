@@ -46868,6 +46868,15 @@
                 ],
                 "parameters": [
                     {
+                        "name": "status",
+                        "in": "query",
+                        "description": "待办状态；browseType=undone 时传 undone。",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "browseType",
                         "in": "query",
                         "description": "状态，默认是all。(all 全部 | today 今天 | thisWeek 本周 | thisMonth 本月 | future 将来 | undone 未完成，需同时传 status=undone | cycle 周期待办 | assignedToOther 指派他人)",
@@ -47551,6 +47560,15 @@
                 ],
                 "parameters": [
                     {
+                        "name": "param",
+                        "in": "query",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "browseType",
                         "in": "query",
                         "description": "状态，默认是assignedTo，取值区分大小写。(assignedTo 指派给我 | openedBy 由我创建 | finishedBy 由我完成 | myInvolved 由我参与 | closedBy 由我关闭 | canceledBy 由我取消 | assignedBy 由我指派 | bysearch 按查询搜索，需同时传 param)",
@@ -48058,6 +48076,15 @@
                     }
                 ],
                 "parameters": [
+                    {
+                        "name": "param",
+                        "in": "query",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
                     {
                         "name": "browseType",
                         "in": "query",
@@ -48740,6 +48767,15 @@
                 ],
                 "parameters": [
                     {
+                        "name": "param",
+                        "in": "query",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "browseType",
                         "in": "query",
                         "description": "状态，默认是assignedTo，取值区分大小写。(all 全部 | assignedTo 指派给我 | openedBy 由我创建 | reviewBy 待我评审 | reviewedBy 我评审过 | closedBy 由我关闭 | assignedBy 由我指派 | bysearch 按查询搜索，需同时传 param)",
@@ -49303,6 +49339,15 @@
                     }
                 ],
                 "parameters": [
+                    {
+                        "name": "param",
+                        "in": "query",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
                     {
                         "name": "browseType",
                         "in": "query",
@@ -49868,6 +49913,15 @@
                 ],
                 "parameters": [
                     {
+                        "name": "param",
+                        "in": "query",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "browseType",
                         "in": "query",
                         "description": "状态，默认是assignedTo，取值区分大小写。(all 全部 | assignedTo 指派给我 | openedBy 由我创建 | reviewBy 待我评审 | reviewedBy 我评审过 | closedBy 由我关闭 | assignedBy 由我指派 | bysearch 按查询搜索，需同时传 param)",
@@ -50165,6 +50219,15 @@
                     }
                 ],
                 "parameters": [
+                    {
+                        "name": "param",
+                        "in": "query",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
                     {
                         "name": "browseType",
                         "in": "query",
@@ -51531,6 +51594,15 @@
                 ],
                 "parameters": [
                     {
+                        "name": "param",
+                        "in": "query",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "browseType",
                         "in": "query",
                         "description": "状态，默认是assigntome。(assigntome 指派给我 | openedbyme 我创建的 | bysearch 按查询搜索，需同时传 param)",
@@ -52044,6 +52116,15 @@
                 ],
                 "parameters": [
                     {
+                        "name": "param",
+                        "in": "query",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "browseType",
                         "in": "query",
                         "description": "状态，默认是assignedTo，取值取自 zt_issue 的字段名。(assignedTo 指派给我 | createdBy 由我创建 | resolvedBy 由我解决 | closedBy 由我关闭 | assignedBy 由我指派 | bysearch 按查询搜索，需同时传 param)",
@@ -52353,6 +52434,15 @@
                     }
                 ],
                 "parameters": [
+                    {
+                        "name": "param",
+                        "in": "query",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
                     {
                         "name": "browseType",
                         "in": "query",
@@ -58801,6 +58891,15 @@
                     }
                 ],
                 "parameters": [
+                    {
+                        "name": "param",
+                        "in": "query",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
                     {
                         "name": "browseType",
                         "in": "query",

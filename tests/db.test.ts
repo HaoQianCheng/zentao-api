@@ -87,6 +87,23 @@ test('db table requests preserve metadata and SQL on the verified tables route a
   } finally { server.stop(true); }
 });
 
+test('db/query sends count=false without losing the existing pagination contract', async () => {
+  let body: unknown;
+  const server = Bun.serve({ port: 0, async fetch(req) {
+    body = await req.json();
+    return Response.json(queryResult);
+  } });
+  try {
+    resetModuleDefinitions();
+    setGlobalOptions({ version: '22.7' });
+    const client = new ZentaoClient(server.url.href);
+    const response = await request('db/query', { sql: 'select id from zt_config', count: false }, { client });
+    expect(body).toEqual({ sql: 'select id from zt_config', count: false });
+    expect(response.data).toEqual(queryResult.rows);
+    expect(response.pager).toMatchObject({ total: 204, page: 4, recPerPage: 3 });
+  } finally { server.stop(true); }
+});
+
 test.each([
   ['db/query', { sql: 'select id from zt_config' }],
   ['db/tables', {}],

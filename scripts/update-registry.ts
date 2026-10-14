@@ -118,6 +118,20 @@ const TAG_DISPLAY: Record<string, string> = {
     doc: '文档',
     todo: '待办',
     my: '地盘',
+    process: '过程裁剪',
+    auditplan: '质量保证计划',
+    nc: '不符合项',
+    opportunity: '机会',
+    deliverable: '交付物',
+    baseline: '基线',
+    change: '项目变更',
+    relation: '对象关联',
+    workflowgroup: '项目流程',
+    resourcecalendar: '人力资源日历',
+    weekly: '项目周报',
+    db: '数据库',
+    knowledgelib: '知识库',
+    knowledge: '知识',
 };
 
 const SCOPE_LABELS: Record<string, string> = {
@@ -279,7 +293,7 @@ function paramDescription(paramName: string): string {
  *
  * Falls back gracefully: if no pattern matches, returns the raw string.
  */
-function parseDescriptionOptions(raw: string): {
+export function parseDescriptionOptions(raw: string): {
     description: string;
     defaultValue?: string;
     options?: { value: string; label: string }[];
@@ -289,8 +303,8 @@ function parseDescriptionOptions(raw: string): {
         let defaultValue: string | undefined;
         let options: { value: string; label: string }[] | undefined;
 
-        // Extract default value: "默认是XXX" / "默认XXX"
-        const defaultMatch = raw.match(/默认(?:是|为)?\s*(\S+?)(?:[。，,.)\uff09\s]|$)/);
+        // Extract explicit codes/numbers, not prose such as "使用页面默认值".
+        const defaultMatch = raw.match(/默认(?:值)?(?:是|为)?\s*([-\w]\S*?)(?:[。，,.)\uff09\s]|$)/);
         if (defaultMatch) {
             defaultValue = defaultMatch[1];
         }
@@ -357,10 +371,11 @@ function findParenthesizedSegment(raw: string): { content: string; index: number
 
             depth -= 1;
             if (depth === 0) {
-                return {
-                    content: raw.slice(start + 1, cursor),
-                    index: start,
-                };
+                const content = raw.slice(start + 1, cursor);
+                // 说明性括号（如“区分大小写”）可能位于真正的选项列表之前。
+                if (content.includes('|')) return { content, index: start };
+                start = cursor;
+                break;
             }
         }
     }
@@ -565,9 +580,12 @@ function buildParams(parameters: OpenAPIParam[] | undefined): RegistryParam[] | 
     };
 
     return queryParams.map(p => {
-        const parsed = parseDescriptionOptions(p.description ?? p.name);
-        const desc = parsed.description || PARAM_DESC_FALLBACK[p.name] || p.name;
         const schemaType = p.schema?.type;
+        // Structured parameter descriptions can contain enums for nested fields.
+        const parsed: ReturnType<typeof parseDescriptionOptions> = schemaType === 'array' || schemaType === 'object'
+            ? { description: p.description ?? p.name }
+            : parseDescriptionOptions(p.description ?? p.name);
+        const desc = parsed.description || PARAM_DESC_FALLBACK[p.name] || p.name;
         const type: RegistryParam['type'] = schemaType === 'integer' || schemaType === 'number'
             ? 'number'
             : schemaType === 'boolean' || schemaType === 'array' || schemaType === 'object'
@@ -929,7 +947,7 @@ function buildRegistry(): RegistryBuildResult {
                 ? inferResultGetter(entry.op, actionType) : undefined;
             const pagerGetter = actionType === 'list' ? inferPagerGetter(entry.op) : undefined;
 
-            const params = (actionType === 'list') ? buildParams(entry.op.parameters) : undefined;
+            const params = buildParams(entry.op.parameters);
             const requestBody = buildRequestBody(entry.op);
 
             const propertyBlocks = new Map<string, string>();
