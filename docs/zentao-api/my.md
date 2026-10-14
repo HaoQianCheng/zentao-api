@@ -20,6 +20,7 @@
 | `meetings` | 我的会议 | `GET` | `/my/meetings` |
 | `issues` | 指派给我的问题 | `GET` | `/my/issues` |
 | `risks` | 指派给我的风险 | `GET` | `/my/risks` |
+| `createSSH` | 添加我的 SSH 公钥 | `POST` | `/my/sshkeys` |
 
 ## 我的待办
 
@@ -641,5 +642,80 @@ const result = await request("my/risks", {
   "pageID": 1,
   "filters": "<string>",
   "groupJoin": "and"
+});
+```
+## 添加我的 SSH 公钥
+
+需部署代码库 API 2.0 实现并配置 GitFox，将公钥添加到当前 Token 用户的 GitFox 账号，account 不能改变归属。成功仅返回 message，不返回密钥 ID；公钥错误保留在 rawMessage.publicKey 中。
+
+- SDK 调用：`request("my/createSSH", params)`
+- HTTP：`POST /my/sshkeys`
+- 动作类型：`action`
+- 最低禅道版本：`22.7` / `biz13.7` / `max8.7` / `ipd5.7`
+
+### 路径参数
+
+无路径参数。
+
+### 查询参数
+
+无查询参数。
+
+### 请求体
+
+请求体必填：是
+请求媒体类型：`application/json`
+
+Schema:
+
+```json
+{
+  "type": "object",
+  "required": [
+    "name",
+    "publicKey"
+  ],
+  "example": {
+    "name": "coder",
+    "publicKey": "ssh-ed25519 <替换为完整公钥内容> coder"
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.$-]+$",
+      "description": "密钥名称，去除首尾空白后仅允许英文字母、数字、连字符、下划线、点和 $"
+    },
+    "publicKey": {
+      "type": "string",
+      "minLength": 1,
+      "description": "完整单行 SSH 公钥文本，去除首尾空白；支持 ssh-rsa、ecdsa-sha2-nistp256/384/521、ssh-ed25519、sk-ecdsa-sha2-nistp256@openssh.com、sk-ssh-ed25519@openssh.com 前缀，完整性及重复检查由 GitFox 处理"
+    }
+  }
+}
+```
+
+示例:
+
+```json
+{
+  "name": "coder",
+  "publicKey": "ssh-ed25519 <替换为完整公钥内容> coder"
+}
+```
+
+### 返回值
+
+- 返回形态：`text`
+- 结果字段：`message`
+
+### SDK 示例
+
+```ts
+import { request } from 'zentao-api';
+
+const result = await request("my/createSSH", {
+  "name": "coder",
+  "publicKey": "ssh-ed25519 <替换为完整公钥内容> coder"
 });
 ```

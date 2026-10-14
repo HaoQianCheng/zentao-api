@@ -121,6 +121,14 @@
       {
         "text": "知识 (knowledge)",
         "link": "/zentao-api/knowledge"
+      },
+      {
+        "text": "代码库空间 (space)",
+        "link": "/zentao-api/space"
+      },
+      {
+        "text": "代码库 (repo)",
+        "link": "/zentao-api/repo"
       }
     ]
   }

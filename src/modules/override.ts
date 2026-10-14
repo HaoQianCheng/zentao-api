@@ -25,6 +25,15 @@ const requestJSON: ModuleActionRequestCallback = async ({ request: command, body
   }
 };
 
+/** 代码库接口只有 status=success 才成功，表单校验还可能返回 result=fail。 */
+const requestCoderJSON: ModuleActionRequestCallback = async info => {
+  const response = await requestJSON(info);
+  if (info.options.raw || (isRecord(response) && response.status === 'success' && response.result !== 'fail')) return response;
+  return isRecord(response)
+    ? { ...response, status: 'fail' }
+    : { status: 'fail', message: 'Invalid coder API response.', response };
+};
+
 /**
  * 内置覆盖 / 扩展定义。
  *
@@ -334,6 +343,158 @@ export function applyBuiltinOverrides(): void {
       request: requestJSON,
     },
   ]);
+
+  // 代码库接口尚未纳入 OpenAPI，需部署对应 API 2.0 实现。
+  const coderMinVersion = ['22.7', 'biz13.7', 'max8.7', 'ipd5.7'];
+  defineModules([
+    {
+      name: 'space',
+      display: '代码库空间',
+      description: '需部署代码库 API 2.0 实现，仅返回当前用户可访问的未删除空间。',
+      actions: [],
+    },
+    {
+      name: 'repo',
+      display: '代码库',
+      description: '需部署代码库 API 2.0 实现，支持查询空间代码库和创建 GitFox 代码库。',
+      actions: [],
+    },
+  ]);
+  defineModuleActions('space', {
+    name: 'list',
+    minVersion: coderMinVersion,
+    display: '获取代码库空间列表',
+    description: '需 space.browse 权限，按空间 ID 降序排列；先按当前用户权限过滤，再分页。',
+    type: 'list',
+    method: 'get',
+    path: '/spaces',
+    resultType: 'list',
+    resultGetter: 'spaces',
+    pagerGetter: 'pager',
+    request: requestCoderJSON,
+    params: [
+      { name: 'pageID', type: 'number', defaultValue: 1, description: '页码，从 1 开始的正整数' },
+      { name: 'recPerPage', type: 'number', defaultValue: 20, description: '每页条数，范围 1～100' },
+    ],
+  });
+  defineModuleActions('repo', [
+    {
+      name: 'list',
+      minVersion: coderMinVersion,
+      display: '获取空间下的代码库列表',
+      description: '需 repo.maintain 权限及空间访问权限，独立授权空间另需空间内的 repo.maintain 权限。仅返回未删除、非导入中且当前用户可访问的代码库；url.http、url.ssh 可能缺省，克隆地址保持服务端原值。',
+      type: 'list',
+      method: 'get',
+      path: '/spaces/{spaceID}/repos',
+      pathParams: { spaceID: '代码库空间 ID，正整数' },
+      resultType: 'list',
+      resultGetter: 'repos',
+      pagerGetter: 'pager',
+      request: requestCoderJSON,
+      params: [
+        { name: 'pageID', type: 'number', defaultValue: 1, description: '页码，从 1 开始的正整数' },
+        { name: 'recPerPage', type: 'number', defaultValue: 20, description: '每页条数，范围 1～100' },
+        {
+          name: 'orderBy',
+          type: 'string',
+          defaultValue: 'id_desc',
+          description: '排序方式',
+          options: [
+            { value: 'id_asc', label: 'ID 升序' },
+            { value: 'id_desc', label: 'ID 降序' },
+            { value: 'name_asc', label: '名称升序' },
+            { value: 'name_desc', label: '名称降序' },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'create',
+      minVersion: coderMinVersion,
+      display: '创建代码库',
+      description: '需配置 GitFox，具备 repo.createRepo 全局权限、空间及关联产品访问权限；私有空间或独立授权空间另需空间内的 repo.create 权限，独立授权空间还需 repo.createRepo 权限。以当前 Token 用户创建，默认 main 分支并初始化 README；返回 id，不返回克隆地址。超时或后续步骤失败时远端代码库可能已创建，重试前应查询目标空间核对。',
+      type: 'create',
+      method: 'post',
+      path: '/repos',
+      resultType: 'object',
+      request: requestCoderJSON,
+      requestBody: {
+        required: true,
+        mediaType: 'application/json',
+        schema: {
+          type: 'object',
+          required: ['space', 'product', 'name'],
+          example: { space: 10, product: [12], name: 'demo' },
+          properties: {
+            space: { type: 'integer', minimum: 1, description: '代码库空间 ID，使用 JSON 数字；字段名为 space' },
+            product: {
+              type: 'array',
+              minItems: 1,
+              items: { type: 'integer', minimum: 1 },
+              description: '关联产品 ID 的非空正整数数组，例如 [12]；不接受字符串元素或逗号分隔字符串',
+            },
+            name: {
+              type: 'string',
+              minLength: 1,
+              pattern: '^[A-Za-z_][A-Za-z0-9_.-]*$',
+              description: '去除首尾空白后，以英文字母或下划线开头，后续仅允许英文字母、数字、下划线、连字符和点',
+            },
+            desc: { type: 'string', defaultValue: '', description: '代码库描述；可选字段使用默认值时应省略，不传 null' },
+            acl: {
+              type: 'string',
+              defaultValue: 'open',
+              options: [{ value: 'open', label: '公开' }, { value: 'private', label: '私有' }],
+              description: '访问权限，private 时 members 必须非空',
+            },
+            members: {
+              type: 'array',
+              defaultValue: [],
+              items: { type: 'string', minLength: 1 },
+              description: '成员账号数组，账号须存在、未删除且未关闭；acl=private 时必填且非空，服务端自动加入当前创建者',
+            },
+          },
+        },
+      },
+    },
+  ]);
+  defineModuleActions('product', {
+    name: 'repos',
+    minVersion: coderMinVersion,
+    display: '获取产品关联的代码库列表',
+    description: '需部署代码库 API 2.0 实现，具备 repo.browse 权限及产品访问权限。仅返回未删除、非导入中且当前用户可访问的代码库，不分页、不保证排序；url.http、url.ssh 可能缺省。产品不存在、已删除或不可访问时为业务失败。',
+    type: 'list',
+    method: 'get',
+    path: '/products/{productID}/repos',
+    pathParams: { productID: '产品 ID，正整数' },
+    resultType: 'list',
+    resultGetter: 'repos',
+    request: requestCoderJSON,
+  });
+  defineModuleActions('my', {
+    name: 'createSSH',
+    minVersion: coderMinVersion,
+    display: '添加我的 SSH 公钥',
+    description: '需部署代码库 API 2.0 实现并配置 GitFox，将公钥添加到当前 Token 用户的 GitFox 账号，account 不能改变归属。成功仅返回 message，不返回密钥 ID；公钥错误保留在 rawMessage.publicKey 中。',
+    type: 'action',
+    method: 'post',
+    path: '/my/sshkeys',
+    resultType: 'text',
+    resultGetter: 'message',
+    request: requestCoderJSON,
+    requestBody: {
+      required: true,
+      mediaType: 'application/json',
+      schema: {
+        type: 'object',
+        required: ['name', 'publicKey'],
+        example: { name: 'coder', publicKey: 'ssh-ed25519 <替换为完整公钥内容> coder' },
+        properties: {
+          name: { type: 'string', minLength: 1, pattern: '^[A-Za-z0-9_.$-]+$', description: '密钥名称，去除首尾空白后仅允许英文字母、数字、连字符、下划线、点和 $' },
+          publicKey: { type: 'string', minLength: 1, description: '完整单行 SSH 公钥文本，去除首尾空白；支持 ssh-rsa、ecdsa-sha2-nistp256/384/521、ssh-ed25519、sk-ecdsa-sha2-nistp256@openssh.com、sk-ssh-ed25519@openssh.com 前缀，完整性及重复检查由 GitFox 处理' },
+        },
+      },
+    },
+  });
 
   for (const [moduleName, actionName] of [['product', 'create'], ['product', 'update'], ['feedback', 'close']]) {
     extendModuleAction(moduleName, actionName, { request: requestJSON });

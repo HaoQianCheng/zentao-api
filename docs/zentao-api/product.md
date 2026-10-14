@@ -16,6 +16,7 @@
 | `get` | 获取产品详情 | `GET` | `/products/{productID}` |
 | `update` | 修改产品 | `PUT` | `/products/{productID}` |
 | `delete` | 删除产品 | `DELETE` | `/products/{productID}` |
+| `repos` | 获取产品关联的代码库列表 | `GET` | `/products/{productID}/repos` |
 
 ## 获取产品列表
 
@@ -664,6 +665,43 @@ const result = await request("product/update", {
 import { request } from 'zentao-api';
 
 const result = await request("product/delete", {
+  "productID": 1
+});
+```
+## 获取产品关联的代码库列表
+
+需部署代码库 API 2.0 实现，具备 repo.browse 权限及产品访问权限。仅返回未删除、非导入中且当前用户可访问的代码库，不分页、不保证排序；url.http、url.ssh 可能缺省。产品不存在、已删除或不可访问时为业务失败。
+
+- SDK 调用：`request("product/repos", params)`
+- HTTP：`GET /products/{productID}/repos`
+- 动作类型：`list`
+- 最低禅道版本：`22.7` / `biz13.7` / `max8.7` / `ipd5.7`
+
+### 路径参数
+
+| 参数 | 说明 |
+| --- | --- |
+| `productID` | 产品 ID，正整数 |
+
+### 查询参数
+
+无查询参数。
+
+### 请求体
+
+无请求体。
+
+### 返回值
+
+- 返回形态：`list`
+- 结果字段：`repos`
+
+### SDK 示例
+
+```ts
+import { request } from 'zentao-api';
+
+const result = await request("product/repos", {
   "productID": 1
 });
 ```
