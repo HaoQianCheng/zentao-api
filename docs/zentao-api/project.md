@@ -1,6 +1,6 @@
 # 项目 (project)
 
-项目管理，支持获取项目列表、获取项目集的项目列表、获取项目团队列表、获取项目成员列表、创建项目、关闭项目、创建项目需求、创建项目Bug、创建项目任务、修改项目、删除项目、维护项目成员
+项目管理，支持获取项目列表、获取项目集的项目列表、获取项目团队列表、获取项目成员列表、创建项目、关闭项目、创建项目需求、创建项目Bug、创建项目任务、创建项目风险、项目关联需求、修改项目、删除项目、维护项目成员
 
 ## 动作概览
 
@@ -15,6 +15,8 @@
 | `createStory` | 创建项目需求 | `POST` | `/projects/{projectID}/stories` |
 | `createBug` | 创建项目Bug | `POST` | `/projects/{projectID}/bugs` |
 | `createTask` | 创建项目任务 | `POST` | `/projects/{projectID}/tasks` |
+| `createRisk` | 创建项目风险 | `POST` | `/projects/{projectID}/risks` |
+| `linkStories` | 项目关联需求 | `POST` | `/projects/{projectID}/stories/link` |
 | `update` | 修改项目 | `PUT` | `/projects/{projectID}` |
 | `delete` | 删除项目 | `DELETE` | `/projects/{projectID}` |
 | `members` | 维护项目成员 | `PUT` | `/projects/{projectID}/members` |
@@ -38,7 +40,7 @@
 | `orderBy` | string | 否 |  | 排序<br>`id_asc` ID 升序<br>`id_desc` ID 降序<br>`name_asc` 名称 升序<br>`name_desc` 名称 降序<br>`begin_asc` 计划开始 升序<br>`begin_desc` 计划开始 降序<br>`end_asc` 计划结束 升序<br>`end_desc` 计划结束 降序 |
 | `recPerPage` | number | 否 |  | 每页数量，不超过1000 |
 | `pageID` | number | 否 |  | 页码，从第1页开始 |
-| `filters` | array | 否 |  | 搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：name(项目名称，示例：关键字)；code(项目代号，示例：关键字)；id(项目ID，示例：1)；model(项目管理方式，枚举：scrum Scrum \| waterfall 瀑布 \| kanban 看板 \| agileplus 融合敏捷 \| waterfallplus 融合瀑布)；hasProduct(项目类型，枚举：1 产品型 \| 0 项目型)；parent(所属项目集，示例：all)；status(状态，枚举：wait 未开始 \| doing 进行中 \| suspended 已挂起 \| closed 已关闭 \| delay 已延期)；desc(项目描述，示例：关键字)；PM(负责人，用户，示例：admin)；openedDate(创建日期，示例：2026-01-01)；begin(计划开始，示例：2026-01-01)；end(计划完成，示例：2026-01-01)；realBegan(实际开始，示例：2026-01-01)；realEnd(实际完成，示例：2026-01-01)；openedBy(由谁创建，用户，示例：admin)；closedBy(由谁关闭，用户，示例：admin)；lastEditedDate(最后编辑日期，示例：2026-01-01)；closedDate(关闭日期，示例：2026-01-01) |
+| `filters` | array | 否 |  | 搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：name(项目名称，示例：关键字)；code(项目代号，示例：关键字)；id(项目ID，示例：1)；model(项目管理方式，枚举：scrum Scrum \| waterfall 瀑布 \| kanban 看板 \| agileplus 融合敏捷 \| waterfallplus 融合瀑布)；hasProduct(项目类型，枚举：1 产品型 \| 0 项目型)；parent(所属项目集，示例：all)；status(状态，枚举：wait 未开始 \| doing 进行中 \| suspended 已挂起 \| closed 已关闭 \| delay 已延期)；desc(项目描述，示例：关键字)；PM(负责人，用户，示例：admin)；teamCount(人数，示例：关键字)；openedDate(创建日期，示例：2026-01-01)；begin(计划开始，示例：2026-01-01)；end(计划完成，示例：2026-01-01)；realBegan(实际开始，示例：2026-01-01)；realEnd(实际完成，示例：2026-01-01)；openedBy(由谁创建，用户，示例：admin)；closedBy(由谁关闭，用户，示例：admin)；lastEditedDate(最后编辑日期，示例：2026-01-01)；closedDate(关闭日期，示例：2026-01-01) |
 | `groupJoin` | string | 否 |  | 条件组之间的连接方式<br>`and` and<br>`or` or |
 
 ### 请求体
@@ -338,7 +340,7 @@ Schema:
 
 ```json
 {
-  "realEnd": "2026-08-19"
+  "realEnd": "2026-10-14"
 }
 ```
 
@@ -684,6 +686,222 @@ const result = await request("project/createTask", {
   "module": 1,
   "story": 1,
   "desc": "<string>"
+});
+```
+## 创建项目风险
+
+- SDK 调用：`request("project/createRisk", params)`
+- HTTP：`POST /projects/{projectID}/risks`
+- 动作类型：`create`
+- 最低禅道版本：`22.7` / `biz13.7` / `max8.7` / `ipd5.7`
+
+### 路径参数
+
+| 参数 | 说明 |
+| --- | --- |
+| `projectID` | 项目ID |
+
+### 查询参数
+
+无查询参数。
+
+### 请求体
+
+请求体必填：是
+
+Schema:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "风险名称。"
+    },
+    "source": {
+      "type": "string",
+      "description": "风险来源。"
+    },
+    "execution": {
+      "type": "integer",
+      "description": "所属执行 ID，项目级风险传 0。",
+      "format": "int32"
+    },
+    "category": {
+      "type": "string",
+      "description": "风险类型。"
+    },
+    "strategy": {
+      "type": "string",
+      "description": "应对策略。"
+    },
+    "impact": {
+      "type": "integer",
+      "description": "影响程度，1-5。",
+      "format": "int32"
+    },
+    "probability": {
+      "type": "integer",
+      "description": "发生概率，1-5。",
+      "format": "int32"
+    },
+    "rate": {
+      "type": "integer",
+      "description": "风险系数，通常为 impact * probability。",
+      "format": "int32"
+    },
+    "pri": {
+      "type": "integer",
+      "description": "优先级，1 高、2 中、3 低。",
+      "format": "int32"
+    },
+    "identifiedDate": {
+      "type": "string",
+      "description": "识别日期。"
+    },
+    "plannedClosedDate": {
+      "type": "string",
+      "description": "计划关闭日期。"
+    },
+    "assignedTo": {
+      "type": "string",
+      "description": "指派人账号。"
+    },
+    "prevention": {
+      "type": "string",
+      "description": "应对措施。"
+    },
+    "remedy": {
+      "type": "string",
+      "description": "响应措施。"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
+```
+
+示例:
+
+```json
+{
+  "name": "API 创建风险",
+  "source": "business",
+  "execution": 0,
+  "category": "technical",
+  "strategy": "mitigation",
+  "impact": 3,
+  "probability": 3,
+  "rate": 9,
+  "pri": 2,
+  "identifiedDate": "2026-10-14",
+  "plannedClosedDate": "2026-11-03",
+  "assignedTo": "admin",
+  "prevention": "<p>提前识别并跟踪。</p>",
+  "remedy": "<p>出现风险后及时响应。</p>"
+}
+```
+
+### 返回值
+
+- 返回形态：`object`
+
+### SDK 示例
+
+```ts
+import { request } from 'zentao-api';
+
+const result = await request("project/createRisk", {
+  "projectID": 1,
+  "name": "<string>",
+  "source": "<string>",
+  "execution": 1,
+  "category": "<string>",
+  "strategy": "<string>",
+  "impact": 1,
+  "probability": 1,
+  "rate": 1,
+  "pri": 1,
+  "identifiedDate": "<string>",
+  "plannedClosedDate": "<string>",
+  "assignedTo": "<string>",
+  "prevention": "<string>",
+  "remedy": "<string>"
+});
+```
+## 项目关联需求
+
+- SDK 调用：`request("project/linkStories", params)`
+- HTTP：`POST /projects/{projectID}/stories/link`
+- 动作类型：`action`
+- 最低禅道版本：`22.7` / `biz13.7` / `max8.7` / `ipd5.7`
+
+### 路径参数
+
+| 参数 | 说明 |
+| --- | --- |
+| `projectID` | 项目ID |
+
+### 查询参数
+
+无查询参数。
+
+### 请求体
+
+请求体必填：是
+
+Schema:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "stories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "要关联到项目的需求 ID 列表。"
+    },
+    "storyType": {
+      "type": "string",
+      "description": "需求类型，默认 story；可按项目需求类型传 requirement、epic 等。"
+    }
+  },
+  "required": [
+    "stories"
+  ]
+}
+```
+
+示例:
+
+```json
+{
+  "stories": [
+    1
+  ],
+  "storyType": "story"
+}
+```
+
+### 返回值
+
+- 返回形态：`text`
+
+### SDK 示例
+
+```ts
+import { request } from 'zentao-api';
+
+const result = await request("project/linkStories", {
+  "projectID": 1,
+  "stories": [
+    "<string>"
+  ],
+  "storyType": "<string>"
 });
 ```
 ## 修改项目

@@ -260,8 +260,8 @@ Schema:
   "project": 2,
   "execution": 3,
   "name": "项目周会",
-  "begin": "2026-08-20 09:00",
-  "end": "2026-08-20 10:00",
+  "begin": "2026-10-15 09:00",
+  "end": "2026-10-15 10:00",
   "mode": "online",
   "host": "admin",
   "participant": [
@@ -424,8 +424,8 @@ Schema:
 ```json
 {
   "name": "项目周会",
-  "begin": "2026-08-20 09:30",
-  "end": "2026-08-20 10:30",
+  "begin": "2026-10-15 09:30",
+  "end": "2026-10-15 10:30",
   "mode": "online",
   "host": "admin",
   "participant": [

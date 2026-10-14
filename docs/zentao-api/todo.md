@@ -1,12 +1,13 @@
 # 待办 (todo)
 
-待办管理，支持创建待办、编辑待办、删除待办
+待办管理，支持创建待办、获取待办详情、编辑待办、删除待办
 
 ## 动作概览
 
 | SDK 动作 | 说明 | 方法 | 路径 |
 | --- | --- | --- | --- |
 | `create` | 创建待办 | `POST` | `/todos` |
+| `get` | 获取待办详情 | `GET` | `/todos/{todoID}` |
 | `update` | 编辑待办 | `PUT` | `/todos/{todoID}` |
 | `delete` | 删除待办 | `DELETE` | `/todos/{todoID}` |
 
@@ -108,6 +109,41 @@ const result = await request("todo/create", {
   "end": "<string>",
   "assignedTo": "<string>",
   "desc": "<string>"
+});
+```
+## 获取待办详情
+
+- SDK 调用：`request("todo/get", params)`
+- HTTP：`GET /todos/{todoID}`
+- 动作类型：`get`
+- 最低禅道版本：`22.7` / `biz13.7` / `max8.7` / `ipd5.7`
+
+### 路径参数
+
+| 参数 | 说明 |
+| --- | --- |
+| `todoID` | 待办ID |
+
+### 查询参数
+
+无查询参数。
+
+### 请求体
+
+无请求体。
+
+### 返回值
+
+- 返回形态：`object`
+- 结果字段：`todo`
+
+### SDK 示例
+
+```ts
+import { request } from 'zentao-api';
+
+const result = await request("todo/get", {
+  "todoID": 1
 });
 ```
 ## 编辑待办

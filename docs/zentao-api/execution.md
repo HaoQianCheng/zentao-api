@@ -1,6 +1,6 @@
 # 执行 (execution)
 
-执行管理，支持获取执行列表、获取项目的执行列表、获取执行团队列表、获取执行成员列表、创建执行（迭代/阶段/看板）、关闭执行、创建执行的任务模块、获取执行详情、修改执行、删除执行、维护执行成员
+执行管理，支持获取执行列表、获取项目的执行列表、获取执行团队列表、获取执行成员列表、创建执行（迭代/阶段/看板）、关闭执行、创建执行的任务模块、执行关联需求、获取执行详情、修改执行、删除执行、维护执行成员
 
 ## 动作概览
 
@@ -13,6 +13,7 @@
 | `create` | 创建执行（迭代/阶段/看板） | `POST` | `/executions` |
 | `close` | 关闭执行 | `POST` | `/executions/{executionID}/close` |
 | `createTaskModule` | 创建执行的任务模块 | `POST` | `/executions/{executionID}/task/modules` |
+| `linkStories` | 执行关联需求 | `POST` | `/executions/{executionID}/stories/link` |
 | `get` | 获取执行详情 | `GET` | `/executions/{executionID}` |
 | `update` | 修改执行 | `PUT` | `/executions/{executionID}` |
 | `delete` | 删除执行 | `DELETE` | `/executions/{executionID}` |
@@ -482,6 +483,79 @@ const result = await request("execution/createTaskModule", {
   "executionID": 1,
   "name": "<string>",
   "parentID": 1
+});
+```
+## 执行关联需求
+
+- SDK 调用：`request("execution/linkStories", params)`
+- HTTP：`POST /executions/{executionID}/stories/link`
+- 动作类型：`action`
+- 最低禅道版本：`22.7` / `biz13.7` / `max8.7` / `ipd5.7`
+
+### 路径参数
+
+| 参数 | 说明 |
+| --- | --- |
+| `executionID` | 执行ID |
+
+### 查询参数
+
+无查询参数。
+
+### 请求体
+
+请求体必填：是
+
+Schema:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "stories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "要关联到执行的需求 ID 列表。"
+    },
+    "storyType": {
+      "type": "string",
+      "description": "需求类型，默认 story。"
+    }
+  },
+  "required": [
+    "stories"
+  ]
+}
+```
+
+示例:
+
+```json
+{
+  "stories": [
+    1
+  ],
+  "storyType": "story"
+}
+```
+
+### 返回值
+
+- 返回形态：`text`
+
+### SDK 示例
+
+```ts
+import { request } from 'zentao-api';
+
+const result = await request("execution/linkStories", {
+  "executionID": 1,
+  "stories": [
+    "<string>"
+  ],
+  "storyType": "<string>"
 });
 ```
 ## 获取执行详情

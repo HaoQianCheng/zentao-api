@@ -111,6 +111,50 @@
         "link": "/zentao-api/my"
       },
       {
+        "text": "过程裁剪 (process)",
+        "link": "/zentao-api/process"
+      },
+      {
+        "text": "质量保证计划 (auditplan)",
+        "link": "/zentao-api/auditplan"
+      },
+      {
+        "text": "不符合项 (nc)",
+        "link": "/zentao-api/nc"
+      },
+      {
+        "text": "机会 (opportunity)",
+        "link": "/zentao-api/opportunity"
+      },
+      {
+        "text": "交付物 (deliverable)",
+        "link": "/zentao-api/deliverable"
+      },
+      {
+        "text": "基线 (baseline)",
+        "link": "/zentao-api/baseline"
+      },
+      {
+        "text": "项目变更 (change)",
+        "link": "/zentao-api/change"
+      },
+      {
+        "text": "对象关联 (relation)",
+        "link": "/zentao-api/relation"
+      },
+      {
+        "text": "项目流程 (workflowgroup)",
+        "link": "/zentao-api/workflowgroup"
+      },
+      {
+        "text": "人力资源日历 (resourcecalendar)",
+        "link": "/zentao-api/resourcecalendar"
+      },
+      {
+        "text": "项目周报 (weekly)",
+        "link": "/zentao-api/weekly"
+      },
+      {
         "text": "数据库 (db)",
         "link": "/zentao-api/db"
       },

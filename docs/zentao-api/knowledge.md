@@ -1,24 +1,24 @@
 # 知识 (knowledge)
 
-需部署商业知识库扩展，支持浏览知识、向量搜索、标题或正文关键词搜索和读取已保存正文。
+知识管理，支持获取 AI 知识库内的知识列表、在多个 AI 知识库内向量搜索、按关键词搜索 AI 知识、获取 AI 知识详情
 
 ## 动作概览
 
 | SDK 动作 | 说明 | 方法 | 路径 |
 | --- | --- | --- | --- |
-| `list` | 获取知识库内知识列表 | `GET` | `/ai/knowledgelibs/{libID}/knowledges` |
-| `embeddingsSearch` | 多知识库向量搜索 | `POST` | `/ai/knowledges/embeddingssearch` |
-| `search` | 多知识库关键词搜索 | `POST` | `/ai/knowledges/search` |
-| `get` | 获取知识详细内容 | `GET` | `/ai/knowledges/{knowledgeID}` |
+| `list` | 获取 AI 知识库内的知识列表 | `GET` | `/ai/knowledgelibs/{libID}/knowledges` |
+| `embeddingsSearch` | 在多个 AI 知识库内向量搜索 | `POST` | `/ai/knowledges/embeddingssearch` |
+| `search` | 按关键词搜索 AI 知识 | `POST` | `/ai/knowledges/search` |
+| `get` | 获取 AI 知识详情 | `GET` | `/ai/knowledges/{knowledgeID}` |
 
-## 获取知识库内知识列表
+## 获取 AI 知识库内的知识列表
 
 返回当前用户可见的知识条目，按本地 ID 降序排列；不支持标题关键词查询。
 
 - SDK 调用：`request("knowledge/list", params)`
 - HTTP：`GET /ai/knowledgelibs/{libID}/knowledges`
 - 动作类型：`list`
-- 最低禅道版本：`biz13.7` / `max8.7` / `ipd5.7`
+- 最低禅道版本：`22.7` / `biz13.7` / `max8.7` / `ipd5.7`
 
 ### 路径参数
 
@@ -58,14 +58,14 @@ const result = await request("knowledge/list", {
   "recPerPage": 20
 });
 ```
-## 多知识库向量搜索
+## 在多个 AI 知识库内向量搜索
 
 仅检索已有索引，需 ai.searchknowledgelib 权限。按匹配度降序返回片段，不分页；用 knowledgeID 获取完整正文，chunkID 仅标识片段。
 
 - SDK 调用：`request("knowledge/embeddingsSearch", params)`
 - HTTP：`POST /ai/knowledges/embeddingssearch`
 - 动作类型：`list`
-- 最低禅道版本：`biz13.7` / `max8.7` / `ipd5.7`
+- 最低禅道版本：`22.7` / `biz13.7` / `max8.7` / `ipd5.7`
 
 ### 路径参数
 
@@ -245,14 +245,14 @@ const result = await request("knowledge/embeddingsSearch", {
   "limit": 5
 });
 ```
-## 多知识库关键词搜索
+## 按关键词搜索 AI 知识
 
 需 ai.searchknowledgelib 权限，按字面文本匹配 title 或已保存的 content，不依赖向量索引。标题与正文分别匹配，单个关键词不能跨字段拼接。返回完整正文及 contentType，正文为空或 null 时返回空字符串；每条知识只返回一次，按知识 ID 降序分页。
 
 - SDK 调用：`request("knowledge/search", params)`
 - HTTP：`POST /ai/knowledges/search`
 - 动作类型：`list`
-- 最低禅道版本：`biz13.7` / `max8.7` / `ipd5.7`
+- 最低禅道版本：`22.7` / `biz13.7` / `max8.7` / `ipd5.7`
 
 ### 路径参数
 
@@ -463,14 +463,14 @@ const result = await request("knowledge/search", {
   "recPerPage": 20
 });
 ```
-## 获取知识详细内容
+## 获取 AI 知识详情
 
 返回已保存的完整正文及来源信息，不触发文件提取、知识同步或索引更新。按 contentType 解释正文，尚未保存正文时 content 可为空。
 
 - SDK 调用：`request("knowledge/get", params)`
 - HTTP：`GET /ai/knowledges/{knowledgeID}`
 - 动作类型：`get`
-- 最低禅道版本：`biz13.7` / `max8.7` / `ipd5.7`
+- 最低禅道版本：`22.7` / `biz13.7` / `max8.7` / `ipd5.7`
 
 ### 路径参数
 

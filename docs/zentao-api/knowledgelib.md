@@ -1,19 +1,19 @@
 # 知识库 (knowledgelib)
 
-需部署商业知识库扩展，仅返回已发布且当前用户可访问的知识库。
+知识库管理，支持获取 AI 知识库列表
 
 ## 动作概览
 
 | SDK 动作 | 说明 | 方法 | 路径 |
 | --- | --- | --- | --- |
-| `list` | 获取知识库列表 | `GET` | `/ai/knowledgelibs` |
+| `list` | 获取 AI 知识库列表 | `GET` | `/ai/knowledgelibs` |
 
-## 获取知识库列表
+## 获取 AI 知识库列表
 
 - SDK 调用：`request("knowledgelib/list", params)`
 - HTTP：`GET /ai/knowledgelibs`
 - 动作类型：`list`
-- 最低禅道版本：`biz13.7` / `max8.7` / `ipd5.7`
+- 最低禅道版本：`22.7` / `biz13.7` / `max8.7` / `ipd5.7`
 
 ### 路径参数
 
