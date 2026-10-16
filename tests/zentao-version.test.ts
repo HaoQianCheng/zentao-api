@@ -50,10 +50,10 @@ describe('ZenTao versions and registry filtering', () => {
 
   test('assigns historical, db, knowledge and coder version cohorts including builtin overrides', () => {
     const actions = getModuleNames().flatMap(name => getModule(name)!.actions);
-    expect(actions).toHaveLength(360);
+    expect(actions).toHaveLength(361);
     expect(actions.filter(action => JSON.stringify(action.minVersion) === JSON.stringify(oldVersions))).toHaveLength(106);
     expect(actions.filter(action => JSON.stringify(action.minVersion) === JSON.stringify(newVersions))).toHaveLength(123);
-    expect(actions.filter(action => JSON.stringify(action.minVersion) === JSON.stringify(latestVersions))).toHaveLength(131);
+    expect(actions.filter(action => JSON.stringify(action.minVersion) === JSON.stringify(latestVersions))).toHaveLength(132);
     expect(getModule('db')!.actions.every(action => JSON.stringify(action.minVersion)
       === JSON.stringify(latestVersions))).toBe(true);
     for (const [moduleName, actionName] of [['space', 'list'], ['repo', 'list'], ['repo', 'create'], ['product', 'repos'], ['my', 'createSSH']]) {

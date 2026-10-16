@@ -75,6 +75,69 @@ test('relation candidates extract objects and pagination while raw mode preserve
   } finally { server.stop(true); }
 });
 
+test('deliverable options return a definition map independently of submitted deliverables', async () => {
+  const received: Array<{ path: string; query: Record<string, string> }> = [];
+  const definitions = { 157: '需求规格说明书', 158: '测试报告' };
+  const submitted = [{ id: 8, deliverable: 157 }];
+  const server = Bun.serve({ port: 0, fetch(req) {
+    const url = new URL(req.url);
+    received.push({ path: url.pathname, query: Object.fromEntries(url.searchParams) });
+    return Response.json(url.pathname.endsWith('/deliverable-options')
+      ? { status: 'success', deliverables: definitions }
+      : { status: 'success', deliverables: submitted, pager: { pageID: 1, recPerPage: 20, recTotal: 1 } });
+  } });
+  try {
+    setGlobalOptions({ version: '22.7' });
+    const client = new ZentaoClient(server.url.href);
+    const options = await request('deliverable/options', { projectID: 2 }, { client });
+    expect(options.data).toEqual(definitions);
+    expect(options.pager).toBeUndefined();
+    const list = await request('deliverable/list', { projectID: 2, browseType: 'reviewing' }, { client });
+    expect(list.data).toEqual(submitted);
+    expect(list.pager).toMatchObject({ page: 1, total: 1 });
+    expect(received[0]).toEqual({ path: '/api.php/v2/projects/2/deliverable-options', query: {} });
+    expect(received[1]).toMatchObject({ path: '/api.php/v2/projects/2/deliverables', query: { browseType: 'reviewing' } });
+    expect(getModuleAction('deliverable', 'options')).toMatchObject({
+      type: 'get', resultType: 'object', resultGetter: 'deliverables',
+    });
+    expect(getModuleAction('deliverable', 'options')!.pagerGetter).toBeUndefined();
+    const filters = getModuleAction('deliverable', 'list')!.params!.find(param => param.name === 'browseType')!;
+    expect(filters.defaultValue).toBe('normal');
+    expect(filters.options).toEqual(expect.arrayContaining([
+      { value: 'normal', label: '已提交' },
+      { value: 'wait', label: '未提交' },
+      { value: 'mine', label: '我提交' },
+      { value: 'pending', label: '待评审' },
+      { value: 'reviewing', label: '评审中' },
+    ]));
+  } finally { server.stop(true); }
+});
+
+test('relation unlink deletes by the relation ID returned by the list action', async () => {
+  const received: Array<{ method: string; path: string }> = [];
+  const relations = [{ relationID: 8, relationKey: '1', relationType: 'custom', relatedObjectID: 3 }];
+  const server = Bun.serve({ port: 0, fetch(req) {
+    received.push({ method: req.method, path: new URL(req.url).pathname });
+    return Response.json(req.method === 'GET' ? { status: 'success', relations } : { status: 'success' });
+  } });
+  try {
+    setGlobalOptions({ version: '22.7' });
+    const client = new ZentaoClient(server.url.href);
+    const list = await request('relation/list', { objectType: 'story', objectID: 1 }, { client });
+    expect(list.data).toEqual(relations);
+    const result = await request('relation/unlink', { relationID: list.data![0]!.relationID }, { client });
+    expect(result.status).toBe('success');
+    expect(received).toEqual([
+      { method: 'GET', path: '/api.php/v2/relations/story/1' },
+      { method: 'DELETE', path: '/api.php/v2/relations/8' },
+    ]);
+    expect(Object.keys(getModuleAction('relation', 'unlink')!.pathParams!)).toEqual(['relationID']);
+    expect(() => resolveActionRequest(getModule('relation')!, 'unlink', {
+      objectType: 'story', objectID: 1, relatedObjectType: 'task', relatedObjectID: 3, relationName: '实现',
+    })).toThrow(expect.objectContaining({ code: 'E_MISSING_PARAM', message: 'Missing required parameter: relationID' }));
+  } finally { server.stop(true); }
+});
+
 test('resource calendars preserve object results and query parameters on a get action', async () => {
   const calendar = { users: { admin: { hours: 8 } }, days: ['2026-10-14'] };
   let query: Record<string, string> = {};
@@ -92,23 +155,29 @@ test('resource calendars preserve object results and query parameters on a get a
   } finally { server.stop(true); }
 });
 
-test('my searches and unfinished todos send documented parameters and case-sensitive defaults', async () => {
-  const received: Array<Record<string, string>> = [];
+test('all ten my searches and unfinished todos retain compatibility query parameters', async () => {
+  const received: Array<{ path: string; query: Record<string, string> }> = [];
   const server = Bun.serve({ port: 0, fetch(req) {
-    received.push(Object.fromEntries(new URL(req.url).searchParams));
-    return Response.json({ status: 'success', bugs: [], todos: [], reviewissues: [] });
+    const url = new URL(req.url);
+    received.push({ path: url.pathname, query: Object.fromEntries(url.searchParams) });
+    return Response.json({ status: 'success', [url.pathname.split('/').at(-1)!]: [] });
   } });
   try {
     setGlobalOptions({ version: '22.7' });
     const client = new ZentaoClient(server.url.href);
     await request('my/bugs', {}, { client });
-    await request('my/bugs', { browseType: 'bysearch', param: '12' }, { client });
+    expect(received[0]).toMatchObject({ query: { browseType: 'assignedTo' } });
+    // OpenAPI still requires these inputs in browseType descriptions despite omitting their declarations.
+    for (const name of ['bugs', 'epics', 'issues', 'requirements', 'reviewIssues', 'risks', 'stories', 'tasks', 'testcases', 'testtasks']) {
+      const browseType = name === 'testtasks' ? 'bySearch' : 'bysearch';
+      await request(`my/${name}`, { browseType, param: '12', pageID: 2, recPerPage: 5 }, { client });
+      expect(received.at(-1)).toEqual({
+        path: `/api.php/v2/my/${name.toLowerCase()}`,
+        query: { browseType, param: '12', pageID: '2', recPerPage: '5' },
+      });
+    }
     await request('my/todos', { browseType: 'undone', status: 'undone' }, { client });
-    await request('my/reviewIssues', { browseType: 'bysearch', param: '13' }, { client });
-    expect(received[0]).toMatchObject({ browseType: 'assignedTo' });
-    expect(received[1]).toMatchObject({ browseType: 'bysearch', param: '12' });
-    expect(received[2]).toMatchObject({ browseType: 'undone', status: 'undone' });
-    expect(received[3]).toMatchObject({ browseType: 'bysearch', param: '13' });
+    expect(received.at(-1)).toMatchObject({ path: '/api.php/v2/my/todos', query: { browseType: 'undone', status: 'undone' } });
     expect(getModuleAction('my', 'bugs')!.params!.find(p => p.name === 'browseType')!.options)
       .toContainEqual({ value: 'assignedTo', label: '指派给我' });
   } finally { server.stop(true); }

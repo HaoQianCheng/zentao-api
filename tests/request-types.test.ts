@@ -49,6 +49,9 @@ async function typedRequestExamples(): Promise<void> {
   expectTypeOf(candidates.data).toEqualTypeOf<DataRecord[] | undefined>();
   const calendar = await request('resourcecalendar/get', { accounts: 'admin' });
   expectTypeOf(calendar.data).toEqualTypeOf<DataRecord | undefined>();
+  const deliverableOptions = await request('deliverable/options', { projectID: 1 });
+  expectTypeOf(deliverableOptions.data).toEqualTypeOf<DataRecord | undefined>();
+  await request('relation/unlink', { relationID: 8 });
   const knowledge = await request('knowledge/search', { keywords: ['API'], libIDs: [1] });
   expectTypeOf(knowledge.data).toEqualTypeOf<DataRecord[] | undefined>();
   const sqlRows = await request('db/query', { sql: 'SELECT id FROM zt_user' });

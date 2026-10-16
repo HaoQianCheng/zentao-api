@@ -1125,7 +1125,7 @@ export const BUILTIN_MODULES = [
                         ]
                     },
                     example: {
-                        "realEnd": "2026-10-14"
+                        "realEnd": "2026-10-16"
                     },
                 },
             }, {
@@ -1435,8 +1435,8 @@ export const BUILTIN_MODULES = [
                         "probability": 3,
                         "rate": 9,
                         "pri": 2,
-                        "identifiedDate": "2026-10-14",
-                        "plannedClosedDate": "2026-11-03",
+                        "identifiedDate": "2026-10-16",
+                        "plannedClosedDate": "2026-11-05",
                         "assignedTo": "admin",
                         "prevention": "<p>提前识别并跟踪。</p>",
                         "remedy": "<p>出现风险后及时响应。</p>"
@@ -6098,8 +6098,8 @@ export const BUILTIN_MODULES = [
                         "project": 2,
                         "execution": 3,
                         "name": "项目周会",
-                        "begin": "2026-10-15 09:00",
-                        "end": "2026-10-15 10:00",
+                        "begin": "2026-10-17 09:00",
+                        "end": "2026-10-17 10:00",
                         "mode": "online",
                         "host": "admin",
                         "participant": [
@@ -6197,8 +6197,8 @@ export const BUILTIN_MODULES = [
                     },
                     example: {
                         "name": "项目周会",
-                        "begin": "2026-10-15 09:30",
-                        "end": "2026-10-15 10:30",
+                        "begin": "2026-10-17 09:30",
+                        "end": "2026-10-17 10:30",
                         "mode": "online",
                         "host": "admin",
                         "participant": [
@@ -6548,7 +6548,7 @@ export const BUILTIN_MODULES = [
                         ]
                     },
                     example: {
-                        "date": "2026-10-14",
+                        "date": "2026-10-16",
                         "name": "从反馈创建的待办"
                     },
                 },
@@ -7362,8 +7362,8 @@ export const BUILTIN_MODULES = [
                         "productID": 1,
                         "integrated": 0,
                         "children": [],
-                        "name": "smart-20261014045806",
-                        "desc": "smart-20261014045806"
+                        "name": "smart-20261016055323",
+                        "desc": "smart-20261016055323"
                     },
                 },
             }, {
@@ -7405,9 +7405,9 @@ export const BUILTIN_MODULES = [
                         ]
                     },
                     example: {
-                        "name": "smart-20261014045806-updated",
+                        "name": "smart-20261016055323-updated",
                         "children": [],
-                        "desc": "smart-20261014045806-updated"
+                        "desc": "smart-20261016055323-updated"
                     },
                 },
             }
@@ -10984,46 +10984,70 @@ export const BUILTIN_MODULES = [
                 resultGetter: 'todos',
                 params: [
                     {
-                        name: 'status',
-                        required: false,
-                        type: 'string',
-                        description: '待办状态；browseType=undone 时传 undone。',
+                        "name": "status",
+                        "required": false,
+                        "type": "string",
+                        "description": "待办状态；browseType=undone 时传 undone。"
                     },
                     {
-                        name: 'browseType',
-                        required: false,
-                        type: 'string',
-                        description: '状态，默认是all',
-                        defaultValue: 'all',
-                        options: [
-                            { value: 'all', label: '全部' },
-                            { value: 'today', label: '今天' },
-                            { value: 'thisWeek', label: '本周' },
-                            { value: 'thisMonth', label: '本月' },
-                            { value: 'future', label: '将来' },
-                            { value: 'undone', label: '未完成，需同时传 status=undone' },
-                            { value: 'cycle', label: '周期待办' },
-                            { value: 'assignedToOther', label: '指派他人' },
-                        ],
+                        "name": "browseType",
+                        "required": false,
+                        "type": "string",
+                        "description": "状态，默认是all",
+                        "defaultValue": "all",
+                        "options": [
+                            {
+                                "value": "all",
+                                "label": "全部"
+                            },
+                            {
+                                "value": "today",
+                                "label": "今天"
+                            },
+                            {
+                                "value": "thisWeek",
+                                "label": "本周"
+                            },
+                            {
+                                "value": "thisMonth",
+                                "label": "本月"
+                            },
+                            {
+                                "value": "future",
+                                "label": "将来"
+                            },
+                            {
+                                "value": "undone",
+                                "label": "未完成，需同时传 status=undone"
+                            },
+                            {
+                                "value": "cycle",
+                                "label": "周期待办"
+                            },
+                            {
+                                "value": "assignedToOther",
+                                "label": "指派他人"
+                            }
+                        ]
                     },
                     {
-                        name: 'orderBy',
-                        required: false,
-                        type: 'string',
-                        description: '排序(date_desc,status,begin 日期/状态/开始时间)',
+                        "name": "orderBy",
+                        "required": false,
+                        "type": "string",
+                        "description": "排序(date_desc,status,begin 日期/状态/开始时间)"
                     },
                     {
-                        name: 'recPerPage',
-                        required: false,
-                        type: 'number',
-                        description: '每页数量，不超过1000',
+                        "name": "recPerPage",
+                        "required": false,
+                        "type": "number",
+                        "description": "每页数量，不超过1000"
                     },
                     {
-                        name: 'pageID',
-                        required: false,
-                        type: 'number',
-                        description: '页码，从第1页开始',
-                    },
+                        "name": "pageID",
+                        "required": false,
+                        "type": "number",
+                        "description": "页码，从第1页开始"
+                    }
                 ],
             }, {
                 name: 'tasks',
@@ -11037,74 +11061,128 @@ export const BUILTIN_MODULES = [
                 resultGetter: 'tasks',
                 params: [
                     {
-                        name: 'param',
-                        required: false,
-                        type: 'string',
-                        description: '搜索参数；browseType=bysearch 或 bySearch 时必填。',
+                        "name": "param",
+                        "required": false,
+                        "type": "string",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。"
                     },
                     {
-                        name: 'browseType',
-                        required: false,
-                        type: 'string',
-                        description: '状态，默认是assignedTo，取值区分大小写',
-                        defaultValue: 'assignedTo',
-                        options: [
-                            { value: 'assignedTo', label: '指派给我' },
-                            { value: 'openedBy', label: '由我创建' },
-                            { value: 'finishedBy', label: '由我完成' },
-                            { value: 'myInvolved', label: '由我参与' },
-                            { value: 'closedBy', label: '由我关闭' },
-                            { value: 'canceledBy', label: '由我取消' },
-                            { value: 'assignedBy', label: '由我指派' },
-                            { value: 'bysearch', label: '按查询搜索，需同时传 param' },
-                        ],
+                        "name": "browseType",
+                        "required": false,
+                        "type": "string",
+                        "description": "状态，默认是assignedTo，取值区分大小写",
+                        "defaultValue": "assignedTo",
+                        "options": [
+                            {
+                                "value": "assignedTo",
+                                "label": "指派给我"
+                            },
+                            {
+                                "value": "openedBy",
+                                "label": "由我创建"
+                            },
+                            {
+                                "value": "finishedBy",
+                                "label": "由我完成"
+                            },
+                            {
+                                "value": "myInvolved",
+                                "label": "由我参与"
+                            },
+                            {
+                                "value": "closedBy",
+                                "label": "由我关闭"
+                            },
+                            {
+                                "value": "canceledBy",
+                                "label": "由我取消"
+                            },
+                            {
+                                "value": "assignedBy",
+                                "label": "由我指派"
+                            },
+                            {
+                                "value": "bysearch",
+                                "label": "按查询搜索，需同时传 param"
+                            }
+                        ]
                     },
                     {
-                        name: 'orderBy',
-                        required: false,
-                        type: 'string',
-                        description: '排序',
-                        options: [
-                            { value: 'id_asc', label: 'ID 升序' },
-                            { value: 'id_desc', label: 'ID 降序' },
-                            { value: 'name_asc', label: '名称 升序' },
-                            { value: 'name_desc', label: '名称 降序' },
-                            { value: 'status_asc', label: '状态 升序' },
-                            { value: 'status_desc', label: '状态 降序' },
-                            { value: 'pri_asc', label: '优先级 升序' },
-                            { value: 'pri_desc', label: '优先级 降序' },
-                        ],
+                        "name": "orderBy",
+                        "required": false,
+                        "type": "string",
+                        "description": "排序",
+                        "options": [
+                            {
+                                "value": "id_asc",
+                                "label": "ID 升序"
+                            },
+                            {
+                                "value": "id_desc",
+                                "label": "ID 降序"
+                            },
+                            {
+                                "value": "name_asc",
+                                "label": "名称 升序"
+                            },
+                            {
+                                "value": "name_desc",
+                                "label": "名称 降序"
+                            },
+                            {
+                                "value": "status_asc",
+                                "label": "状态 升序"
+                            },
+                            {
+                                "value": "status_desc",
+                                "label": "状态 降序"
+                            },
+                            {
+                                "value": "pri_asc",
+                                "label": "优先级 升序"
+                            },
+                            {
+                                "value": "pri_desc",
+                                "label": "优先级 降序"
+                            }
+                        ]
                     },
                     {
-                        name: 'recPerPage',
-                        required: false,
-                        type: 'number',
-                        description: '每页数量，不超过1000',
+                        "name": "recPerPage",
+                        "required": false,
+                        "type": "number",
+                        "description": "每页数量，不超过1000"
                     },
                     {
-                        name: 'pageID',
-                        required: false,
-                        type: 'number',
-                        description: '页码，从第1页开始',
+                        "name": "pageID",
+                        "required": false,
+                        "type": "number",
+                        "description": "页码，从第1页开始"
                     },
                     {
-                        name: 'filters',
-                        required: false,
-                        type: 'array',
-                        description: '搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：name(任务名称，示例：关键字)；keywords(关键词，示例：关键字)；id(编号，示例：1)；status(任务状态，枚举：wait 未开始 | doing 进行中 | done 已完成 | pause 已暂停 | cancel 已取消 | closed 已关闭)；desc(任务描述，示例：关键字)；assignedTo(指派给，用户，示例：admin)；pri(优先级，枚举：1 | 2 | 3 | 4)；project(所属项目，示例：all)；execution(所属执行，示例：all)；module(所属模块，示例：all)；estimate(最初预计，示例：关键字)；left(预计剩余，示例：关键字)；consumed(总计消耗，示例：关键字)；type(任务类型，枚举：design 设计 | devel 开发 | request 需求 | test 测试 | study 研究 | discuss 讨论 | ui 界面 | affair 事务 | misc 其他)；story(相关用户故事，示例：all)；fromBug(来源Bug编号，枚举：design 设计 | devel 开发 | request 需求 | test 测试 | study 研究 | discuss 讨论 | ui 界面 | affair 事务 | misc 其他)；closedReason(关闭原因，枚举：done 已完成 | cancel 已取消)；openedBy(由谁创建，用户，示例：admin)；finishedBy(由谁完成，用户，示例：admin)；closedBy(由谁关闭，用户，示例：admin)；canceledBy(由谁取消，用户，示例：admin)；lastEditedBy(最后修改，用户，示例：admin)；mailto(抄送给，用户，示例：admin)；openedDate(创建日期，示例：2026-01-01)；deadline(截止日期，示例：2026-01-01)；estStarted(预计开始，示例：2026-01-01)；realStarted(实际开始，示例：2026-01-01)；assignedDate(指派日期，示例：2026-01-01)；finishedDate(实际完成，示例：2026-01-01)；closedDate(关闭时间，示例：2026-01-01)；canceledDate(取消时间，示例：2026-01-01)；lastEditedDate(最后修改日期，示例：2026-01-01)；activatedDate(激活日期，示例：2026-01-01)',
-                        style: 'deepObject',
-                        explode: true,
+                        "name": "filters",
+                        "required": false,
+                        "type": "array",
+                        "description": "搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：name(任务名称，示例：关键字)；keywords(关键词，示例：关键字)；id(编号，示例：1)；status(任务状态，枚举：wait 未开始 | doing 进行中 | done 已完成 | pause 已暂停 | cancel 已取消 | closed 已关闭)；desc(任务描述，示例：关键字)；assignedTo(指派给，用户，示例：admin)；pri(优先级，枚举：1 | 2 | 3 | 4)；project(所属项目，示例：all)；execution(所属执行，示例：all)；module(所属模块，示例：all)；estimate(最初预计，示例：关键字)；left(预计剩余，示例：关键字)；consumed(总计消耗，示例：关键字)；type(任务类型，枚举：design 设计 | devel 开发 | request 需求 | test 测试 | study 研究 | discuss 讨论 | ui 界面 | affair 事务 | misc 其他)；story(相关用户故事，示例：all)；fromBug(来源Bug编号，枚举：design 设计 | devel 开发 | request 需求 | test 测试 | study 研究 | discuss 讨论 | ui 界面 | affair 事务 | misc 其他)；closedReason(关闭原因，枚举：done 已完成 | cancel 已取消)；openedBy(由谁创建，用户，示例：admin)；finishedBy(由谁完成，用户，示例：admin)；closedBy(由谁关闭，用户，示例：admin)；canceledBy(由谁取消，用户，示例：admin)；lastEditedBy(最后修改，用户，示例：admin)；mailto(抄送给，用户，示例：admin)；openedDate(创建日期，示例：2026-01-01)；deadline(截止日期，示例：2026-01-01)；estStarted(预计开始，示例：2026-01-01)；realStarted(实际开始，示例：2026-01-01)；assignedDate(指派日期，示例：2026-01-01)；finishedDate(实际完成，示例：2026-01-01)；closedDate(关闭时间，示例：2026-01-01)；canceledDate(取消时间，示例：2026-01-01)；lastEditedDate(最后修改日期，示例：2026-01-01)；activatedDate(激活日期，示例：2026-01-01)",
+                        "style": "deepObject",
+                        "explode": true
                     },
                     {
-                        name: 'groupJoin',
-                        required: false,
-                        type: 'string',
-                        description: '条件组之间的连接方式',
-                        options: [
-                            { value: 'and', label: 'and' },
-                            { value: 'or', label: 'or' },
-                        ],
-                    },
+                        "name": "groupJoin",
+                        "required": false,
+                        "type": "string",
+                        "description": "条件组之间的连接方式",
+                        "options": [
+                            {
+                                "value": "and",
+                                "label": "and"
+                            },
+                            {
+                                "value": "or",
+                                "label": "or"
+                            }
+                        ]
+                    }
                 ],
             }, {
                 name: 'bugs',
@@ -11118,72 +11196,120 @@ export const BUILTIN_MODULES = [
                 resultGetter: 'bugs',
                 params: [
                     {
-                        name: 'param',
-                        required: false,
-                        type: 'string',
-                        description: '搜索参数；browseType=bysearch 或 bySearch 时必填。',
+                        "name": "param",
+                        "required": false,
+                        "type": "string",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。"
                     },
                     {
-                        name: 'browseType',
-                        required: false,
-                        type: 'string',
-                        description: '状态，默认是assignedTo，取值取自 zt_bug 的字段名（区分大小写）',
-                        defaultValue: 'assignedTo',
-                        options: [
-                            { value: 'assignedTo', label: '指派给我' },
-                            { value: 'openedBy', label: '由我创建' },
-                            { value: 'resolvedBy', label: '由我解决' },
-                            { value: 'closedBy', label: '由我关闭' },
-                            { value: 'assignedBy', label: '由我指派' },
-                            { value: 'bysearch', label: '按查询搜索，需同时传 param' },
-                        ],
+                        "name": "browseType",
+                        "required": false,
+                        "type": "string",
+                        "description": "状态，默认是assignedTo，取值取自 zt_bug 的字段名（区分大小写）",
+                        "defaultValue": "assignedTo",
+                        "options": [
+                            {
+                                "value": "assignedTo",
+                                "label": "指派给我"
+                            },
+                            {
+                                "value": "openedBy",
+                                "label": "由我创建"
+                            },
+                            {
+                                "value": "resolvedBy",
+                                "label": "由我解决"
+                            },
+                            {
+                                "value": "closedBy",
+                                "label": "由我关闭"
+                            },
+                            {
+                                "value": "assignedBy",
+                                "label": "由我指派"
+                            },
+                            {
+                                "value": "bysearch",
+                                "label": "按查询搜索，需同时传 param"
+                            }
+                        ]
                     },
                     {
-                        name: 'orderBy',
-                        required: false,
-                        type: 'string',
-                        description: '排序',
-                        options: [
-                            { value: 'id_asc', label: 'ID 升序' },
-                            { value: 'id_desc', label: 'ID 降序' },
-                            { value: 'title_asc', label: '标题 升序' },
-                            { value: 'title_desc', label: '标题 降序' },
-                            { value: 'status_asc', label: '状态 升序' },
-                            { value: 'status_desc', label: '状态 降序' },
-                            { value: 'severity_asc', label: '严重程度 升序' },
-                            { value: 'severity_desc', label: '严重程度 降序' },
-                        ],
+                        "name": "orderBy",
+                        "required": false,
+                        "type": "string",
+                        "description": "排序",
+                        "options": [
+                            {
+                                "value": "id_asc",
+                                "label": "ID 升序"
+                            },
+                            {
+                                "value": "id_desc",
+                                "label": "ID 降序"
+                            },
+                            {
+                                "value": "title_asc",
+                                "label": "标题 升序"
+                            },
+                            {
+                                "value": "title_desc",
+                                "label": "标题 降序"
+                            },
+                            {
+                                "value": "status_asc",
+                                "label": "状态 升序"
+                            },
+                            {
+                                "value": "status_desc",
+                                "label": "状态 降序"
+                            },
+                            {
+                                "value": "severity_asc",
+                                "label": "严重程度 升序"
+                            },
+                            {
+                                "value": "severity_desc",
+                                "label": "严重程度 降序"
+                            }
+                        ]
                     },
                     {
-                        name: 'recPerPage',
-                        required: false,
-                        type: 'number',
-                        description: '每页数量，不超过1000',
+                        "name": "recPerPage",
+                        "required": false,
+                        "type": "number",
+                        "description": "每页数量，不超过1000"
                     },
                     {
-                        name: 'pageID',
-                        required: false,
-                        type: 'number',
-                        description: '页码，从第1页开始',
+                        "name": "pageID",
+                        "required": false,
+                        "type": "number",
+                        "description": "页码，从第1页开始"
                     },
                     {
-                        name: 'filters',
-                        required: false,
-                        type: 'array',
-                        description: '搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：title(Bug标题，示例：关键字)；module(所属模块，模块，示例：0)；keywords(关键词，示例：关键字)；steps(重现步骤，示例：关键字)；assignedTo(指派给，用户，示例：admin)；resolvedBy(解决者，用户，示例：admin)；status(Bug状态，枚举：active 激活 | resolved 已解决 | closed 已关闭)；confirmed(是否确认，枚举：1 已确认 | 0 未确认)；story(相关需求，示例：关键字)；project(所属项目，示例：all)；product(所属产品，示例：all)；branch(branch，示例：all)；plan(所属计划，示例：all)；id(Bug编号，示例：1)；execution(所属执行，执行，示例：3)；severity(严重程度，枚举：1 | 2 | 3 | 4)；pri(优先级，枚举：1 | 2 | 3 | 4)；type(Bug类型，枚举：codeerror 代码错误 | config 配置相关 | install 安装部署 | security 安全相关 | performance 性能问题 | standard 标准规范 | automation 测试脚本 | designdefect 设计缺陷 | codeimprovement 代码改进 | others 其他)；os(操作系统，枚举：all 全部 | windows Windows | win11 Windows 11 | win10 Windows 10 | win8 Windows 8 | win7 Windows 7 | winxp Windows XP | osx Mac OS | android Android | ios IOS | linux Linux | ubuntu Ubuntu | chromeos Chrome OS | fedora Fedora | unix Unix | others 其他)；browser(浏览器，枚举：all 全部 | chrome Chrome | edge Edge | ie IE系列 | ie11 IE11 | ie10 IE10 | ie9 IE9 | ie8 IE8 | firefox firefox系列 | opera Opera系列 | safari | 360 360浏览器 | qq QQ浏览器 | other 其他)；resolution(解决方案，枚举：bydesign 设计如此 | duplicate 重复Bug | external 外部原因 | fixed 已解决 | notrepro 无法重现 | postponed 延期处理 | willnotfix 不予解决 | tostory 转为用户故事)；activatedCount(激活次数，示例：关键字)；toTask(转任务，示例：关键字)；toStory(转用户故事，示例：关键字)；openedBy(由谁创建，用户，示例：admin)；closedBy(由谁关闭，用户，示例：admin)；lastEditedBy(修改者，用户，示例：admin)；mailto(抄送给，用户，示例：admin)；openedBuild(影响版本，示例：builds)；resolvedBuild(解决版本，示例：builds)；openedDate(创建日期，示例：2026-01-01)；assignedDate(指派日期，示例：2026-01-01)；resolvedDate(解决日期，示例：2026-01-01)；closedDate(关闭日期，示例：2026-01-01)；lastEditedDate(修改日期，示例：2026-01-01)；deadline(截止日期，示例：2026-01-01)；activatedDate(激活时间，示例：2026-01-01)',
-                        style: 'deepObject',
-                        explode: true,
+                        "name": "filters",
+                        "required": false,
+                        "type": "array",
+                        "description": "搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：title(Bug标题，示例：关键字)；module(所属模块，模块，示例：0)；keywords(关键词，示例：关键字)；steps(重现步骤，示例：关键字)；assignedTo(指派给，用户，示例：admin)；resolvedBy(解决者，用户，示例：admin)；status(Bug状态，枚举：active 激活 | resolved 已解决 | closed 已关闭)；confirmed(是否确认，枚举：1 已确认 | 0 未确认)；story(相关需求，示例：关键字)；project(所属项目，示例：all)；product(所属产品，示例：all)；branch(branch，示例：all)；plan(所属计划，示例：all)；id(Bug编号，示例：1)；execution(所属执行，执行，示例：3)；severity(严重程度，枚举：1 | 2 | 3 | 4)；pri(优先级，枚举：1 | 2 | 3 | 4)；type(Bug类型，枚举：codeerror 代码错误 | config 配置相关 | install 安装部署 | security 安全相关 | performance 性能问题 | standard 标准规范 | automation 测试脚本 | designdefect 设计缺陷 | codeimprovement 代码改进 | others 其他)；os(操作系统，枚举：all 全部 | windows Windows | win11 Windows 11 | win10 Windows 10 | win8 Windows 8 | win7 Windows 7 | winxp Windows XP | osx Mac OS | android Android | ios IOS | linux Linux | ubuntu Ubuntu | chromeos Chrome OS | fedora Fedora | unix Unix | others 其他)；browser(浏览器，枚举：all 全部 | chrome Chrome | edge Edge | ie IE系列 | ie11 IE11 | ie10 IE10 | ie9 IE9 | ie8 IE8 | firefox firefox系列 | opera Opera系列 | safari | 360 360浏览器 | qq QQ浏览器 | other 其他)；resolution(解决方案，枚举：bydesign 设计如此 | duplicate 重复Bug | external 外部原因 | fixed 已解决 | notrepro 无法重现 | postponed 延期处理 | willnotfix 不予解决 | tostory 转为用户故事)；activatedCount(激活次数，示例：关键字)；toTask(转任务，示例：关键字)；toStory(转用户故事，示例：关键字)；openedBy(由谁创建，用户，示例：admin)；closedBy(由谁关闭，用户，示例：admin)；lastEditedBy(修改者，用户，示例：admin)；mailto(抄送给，用户，示例：admin)；openedBuild(影响版本，示例：builds)；resolvedBuild(解决版本，示例：builds)；openedDate(创建日期，示例：2026-01-01)；assignedDate(指派日期，示例：2026-01-01)；resolvedDate(解决日期，示例：2026-01-01)；closedDate(关闭日期，示例：2026-01-01)；lastEditedDate(修改日期，示例：2026-01-01)；deadline(截止日期，示例：2026-01-01)；activatedDate(激活时间，示例：2026-01-01)",
+                        "style": "deepObject",
+                        "explode": true
                     },
                     {
-                        name: 'groupJoin',
-                        required: false,
-                        type: 'string',
-                        description: '条件组之间的连接方式',
-                        options: [
-                            { value: 'and', label: 'and' },
-                            { value: 'or', label: 'or' },
-                        ],
-                    },
+                        "name": "groupJoin",
+                        "required": false,
+                        "type": "string",
+                        "description": "条件组之间的连接方式",
+                        "options": [
+                            {
+                                "value": "and",
+                                "label": "and"
+                            },
+                            {
+                                "value": "or",
+                                "label": "or"
+                            }
+                        ]
+                    }
                 ],
             }, {
                 name: 'stories',
@@ -11197,72 +11323,120 @@ export const BUILTIN_MODULES = [
                 resultGetter: 'stories',
                 params: [
                     {
-                        name: 'param',
-                        required: false,
-                        type: 'string',
-                        description: '搜索参数；browseType=bysearch 或 bySearch 时必填。',
+                        "name": "param",
+                        "required": false,
+                        "type": "string",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。"
                     },
                     {
-                        name: 'browseType',
-                        required: false,
-                        type: 'string',
-                        description: '状态，默认是assignedTo，取值区分大小写',
-                        defaultValue: 'assignedTo',
-                        options: [
-                            { value: 'all', label: '全部' },
-                            { value: 'assignedTo', label: '指派给我' },
-                            { value: 'openedBy', label: '由我创建' },
-                            { value: 'reviewBy', label: '待我评审' },
-                            { value: 'reviewedBy', label: '我评审过' },
-                            { value: 'closedBy', label: '由我关闭' },
-                            { value: 'assignedBy', label: '由我指派' },
-                            { value: 'bysearch', label: '按查询搜索，需同时传 param' },
-                        ],
+                        "name": "browseType",
+                        "required": false,
+                        "type": "string",
+                        "description": "状态，默认是assignedTo，取值区分大小写",
+                        "defaultValue": "assignedTo",
+                        "options": [
+                            {
+                                "value": "all",
+                                "label": "全部"
+                            },
+                            {
+                                "value": "assignedTo",
+                                "label": "指派给我"
+                            },
+                            {
+                                "value": "openedBy",
+                                "label": "由我创建"
+                            },
+                            {
+                                "value": "reviewBy",
+                                "label": "待我评审"
+                            },
+                            {
+                                "value": "reviewedBy",
+                                "label": "我评审过"
+                            },
+                            {
+                                "value": "closedBy",
+                                "label": "由我关闭"
+                            },
+                            {
+                                "value": "assignedBy",
+                                "label": "由我指派"
+                            },
+                            {
+                                "value": "bysearch",
+                                "label": "按查询搜索，需同时传 param"
+                            }
+                        ]
                     },
                     {
-                        name: 'orderBy',
-                        required: false,
-                        type: 'string',
-                        description: '排序',
-                        options: [
-                            { value: 'id_asc', label: 'ID 升序' },
-                            { value: 'id_desc', label: 'ID 降序' },
-                            { value: 'title_asc', label: '标题 升序' },
-                            { value: 'title_desc', label: '标题 降序' },
-                            { value: 'status_asc', label: '状态 升序' },
-                            { value: 'status_desc', label: '状态 降序' },
-                        ],
+                        "name": "orderBy",
+                        "required": false,
+                        "type": "string",
+                        "description": "排序",
+                        "options": [
+                            {
+                                "value": "id_asc",
+                                "label": "ID 升序"
+                            },
+                            {
+                                "value": "id_desc",
+                                "label": "ID 降序"
+                            },
+                            {
+                                "value": "title_asc",
+                                "label": "标题 升序"
+                            },
+                            {
+                                "value": "title_desc",
+                                "label": "标题 降序"
+                            },
+                            {
+                                "value": "status_asc",
+                                "label": "状态 升序"
+                            },
+                            {
+                                "value": "status_desc",
+                                "label": "状态 降序"
+                            }
+                        ]
                     },
                     {
-                        name: 'recPerPage',
-                        required: false,
-                        type: 'number',
-                        description: '每页数量，不超过1000',
+                        "name": "recPerPage",
+                        "required": false,
+                        "type": "number",
+                        "description": "每页数量，不超过1000"
                     },
                     {
-                        name: 'pageID',
-                        required: false,
-                        type: 'number',
-                        description: '页码，从第1页开始',
+                        "name": "pageID",
+                        "required": false,
+                        "type": "number",
+                        "description": "页码，从第1页开始"
                     },
                     {
-                        name: 'filters',
-                        required: false,
-                        type: 'array',
-                        description: '搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：title(需求名称，示例：关键字)；id(编号，示例：1)；keywords(关键词，示例：关键字)；status(当前状态，枚举：draft 草稿 | reviewing 评审中 | active 激活 | changing 变更中 | closed 已关闭)；pri(优先级，枚举：1 | 2 | 3 | 4)；module(所属模块，示例：all)；stage(所处阶段，枚举：wait 未开始 | planned 已计划 | projected 研发立项 | designing 设计中 | designed 设计完毕 | developing 研发中 | developed 研发完毕 | testing 测试中 | tested 测试完毕 | verified 已验收 | rejected 验收失败 | delivering 交付中 | delivered 已交付 | released 已发布 | closed 已关闭)；product(所属产品，示例：all)；branch(branch，示例：all)；grade(需求层级，示例：all)；plan(所属计划，示例：all)；release(所属发布，示例：all)；estimate(预计小时，示例：关键字)；source(来源，枚举：customer 客户 | user 用户 | po 产品经理 | market 市场 | service 客服 | operation 运营 | support 技术支持 | competitor 竞争对手 | partner 合作伙伴 | dev 开发人员 | tester 测试人员 | bug Bug | forum 论坛 | other 其他)；sourceNote(来源备注，示例：关键字)；fromBug(来源Bug，示例：关键字)；category(类别，枚举：feature 功能 | interface 接口 | performance 性能 | safe 安全 | experience 体验 | improve 改进 | other 其他)；openedBy(由谁创建，用户，示例：admin)；reviewedBy(已评审人，用户，示例：admin)；result(评审结果，枚举：pass 确认通过 | revert 撤销变更 | clarify 有待明确 | reject 拒绝)；assignedTo(指派给，用户，示例：admin)；closedBy(由谁关闭，用户，示例：admin)；lastEditedBy(最后修改，用户，示例：admin)；mailto(抄送给，用户，示例：admin)；closedReason(关闭原因，枚举：done 已完成 | subdivided 已拆分 | duplicate 重复 | postponed 延期 | willnotdo 不做 | cancel 已取消 | bydesign 设计如此)；version(版本号，示例：关键字)；openedDate(创建日期，示例：2026-01-01)；reviewedDate(评审时间，示例：2026-01-01)；assignedDate(指派日期，示例：2026-01-01)；closedDate(关闭日期，示例：2026-01-01)；lastEditedDate(最后修改日期，示例：2026-01-01)；activatedDate(激活日期，示例：2026-01-01)',
-                        style: 'deepObject',
-                        explode: true,
+                        "name": "filters",
+                        "required": false,
+                        "type": "array",
+                        "description": "搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：title(需求名称，示例：关键字)；id(编号，示例：1)；keywords(关键词，示例：关键字)；status(当前状态，枚举：draft 草稿 | reviewing 评审中 | active 激活 | changing 变更中 | closed 已关闭)；pri(优先级，枚举：1 | 2 | 3 | 4)；module(所属模块，示例：all)；stage(所处阶段，枚举：wait 未开始 | planned 已计划 | projected 研发立项 | designing 设计中 | designed 设计完毕 | developing 研发中 | developed 研发完毕 | testing 测试中 | tested 测试完毕 | verified 已验收 | rejected 验收失败 | delivering 交付中 | delivered 已交付 | released 已发布 | closed 已关闭)；product(所属产品，示例：all)；branch(branch，示例：all)；grade(需求层级，示例：all)；plan(所属计划，示例：all)；release(所属发布，示例：all)；estimate(预计小时，示例：关键字)；source(来源，枚举：customer 客户 | user 用户 | po 产品经理 | market 市场 | service 客服 | operation 运营 | support 技术支持 | competitor 竞争对手 | partner 合作伙伴 | dev 开发人员 | tester 测试人员 | bug Bug | forum 论坛 | other 其他)；sourceNote(来源备注，示例：关键字)；fromBug(来源Bug，示例：关键字)；category(类别，枚举：feature 功能 | interface 接口 | performance 性能 | safe 安全 | experience 体验 | improve 改进 | other 其他)；openedBy(由谁创建，用户，示例：admin)；reviewedBy(已评审人，用户，示例：admin)；result(评审结果，枚举：pass 确认通过 | revert 撤销变更 | clarify 有待明确 | reject 拒绝)；assignedTo(指派给，用户，示例：admin)；closedBy(由谁关闭，用户，示例：admin)；lastEditedBy(最后修改，用户，示例：admin)；mailto(抄送给，用户，示例：admin)；closedReason(关闭原因，枚举：done 已完成 | subdivided 已拆分 | duplicate 重复 | postponed 延期 | willnotdo 不做 | cancel 已取消 | bydesign 设计如此)；version(版本号，示例：关键字)；openedDate(创建日期，示例：2026-01-01)；reviewedDate(评审时间，示例：2026-01-01)；assignedDate(指派日期，示例：2026-01-01)；closedDate(关闭日期，示例：2026-01-01)；lastEditedDate(最后修改日期，示例：2026-01-01)；activatedDate(激活日期，示例：2026-01-01)",
+                        "style": "deepObject",
+                        "explode": true
                     },
                     {
-                        name: 'groupJoin',
-                        required: false,
-                        type: 'string',
-                        description: '条件组之间的连接方式',
-                        options: [
-                            { value: 'and', label: 'and' },
-                            { value: 'or', label: 'or' },
-                        ],
-                    },
+                        "name": "groupJoin",
+                        "required": false,
+                        "type": "string",
+                        "description": "条件组之间的连接方式",
+                        "options": [
+                            {
+                                "value": "and",
+                                "label": "and"
+                            },
+                            {
+                                "value": "or",
+                                "label": "or"
+                            }
+                        ]
+                    }
                 ],
             }, {
                 name: 'epics',
@@ -11276,72 +11450,120 @@ export const BUILTIN_MODULES = [
                 resultGetter: 'epics',
                 params: [
                     {
-                        name: 'param',
-                        required: false,
-                        type: 'string',
-                        description: '搜索参数；browseType=bysearch 或 bySearch 时必填。',
+                        "name": "param",
+                        "required": false,
+                        "type": "string",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。"
                     },
                     {
-                        name: 'browseType',
-                        required: false,
-                        type: 'string',
-                        description: '状态，默认是assignedTo，取值区分大小写',
-                        defaultValue: 'assignedTo',
-                        options: [
-                            { value: 'all', label: '全部' },
-                            { value: 'assignedTo', label: '指派给我' },
-                            { value: 'openedBy', label: '由我创建' },
-                            { value: 'reviewBy', label: '待我评审' },
-                            { value: 'reviewedBy', label: '我评审过' },
-                            { value: 'closedBy', label: '由我关闭' },
-                            { value: 'assignedBy', label: '由我指派' },
-                            { value: 'bysearch', label: '按查询搜索，需同时传 param' },
-                        ],
+                        "name": "browseType",
+                        "required": false,
+                        "type": "string",
+                        "description": "状态，默认是assignedTo，取值区分大小写",
+                        "defaultValue": "assignedTo",
+                        "options": [
+                            {
+                                "value": "all",
+                                "label": "全部"
+                            },
+                            {
+                                "value": "assignedTo",
+                                "label": "指派给我"
+                            },
+                            {
+                                "value": "openedBy",
+                                "label": "由我创建"
+                            },
+                            {
+                                "value": "reviewBy",
+                                "label": "待我评审"
+                            },
+                            {
+                                "value": "reviewedBy",
+                                "label": "我评审过"
+                            },
+                            {
+                                "value": "closedBy",
+                                "label": "由我关闭"
+                            },
+                            {
+                                "value": "assignedBy",
+                                "label": "由我指派"
+                            },
+                            {
+                                "value": "bysearch",
+                                "label": "按查询搜索，需同时传 param"
+                            }
+                        ]
                     },
                     {
-                        name: 'orderBy',
-                        required: false,
-                        type: 'string',
-                        description: '排序',
-                        options: [
-                            { value: 'id_asc', label: 'ID 升序' },
-                            { value: 'id_desc', label: 'ID 降序' },
-                            { value: 'title_asc', label: '标题 升序' },
-                            { value: 'title_desc', label: '标题 降序' },
-                            { value: 'status_asc', label: '状态 升序' },
-                            { value: 'status_desc', label: '状态 降序' },
-                        ],
+                        "name": "orderBy",
+                        "required": false,
+                        "type": "string",
+                        "description": "排序",
+                        "options": [
+                            {
+                                "value": "id_asc",
+                                "label": "ID 升序"
+                            },
+                            {
+                                "value": "id_desc",
+                                "label": "ID 降序"
+                            },
+                            {
+                                "value": "title_asc",
+                                "label": "标题 升序"
+                            },
+                            {
+                                "value": "title_desc",
+                                "label": "标题 降序"
+                            },
+                            {
+                                "value": "status_asc",
+                                "label": "状态 升序"
+                            },
+                            {
+                                "value": "status_desc",
+                                "label": "状态 降序"
+                            }
+                        ]
                     },
                     {
-                        name: 'recPerPage',
-                        required: false,
-                        type: 'number',
-                        description: '每页数量，不超过1000',
+                        "name": "recPerPage",
+                        "required": false,
+                        "type": "number",
+                        "description": "每页数量，不超过1000"
                     },
                     {
-                        name: 'pageID',
-                        required: false,
-                        type: 'number',
-                        description: '页码，从第1页开始',
+                        "name": "pageID",
+                        "required": false,
+                        "type": "number",
+                        "description": "页码，从第1页开始"
                     },
                     {
-                        name: 'filters',
-                        required: false,
-                        type: 'array',
-                        description: '搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：title(需求名称，示例：关键字)；id(编号，示例：1)；keywords(关键词，示例：关键字)；status(当前状态，枚举：draft 草稿 | reviewing 评审中 | active 激活 | changing 变更中 | closed 已关闭)；pri(优先级，枚举：1 | 2 | 3 | 4)；module(所属模块，示例：all)；stage(所处阶段，枚举：wait 未开始 | planned 已计划 | projected 研发立项 | designing 设计中 | designed 设计完毕 | developing 研发中 | developed 研发完毕 | testing 测试中 | tested 测试完毕 | verified 已验收 | rejected 验收失败 | delivering 交付中 | delivered 已交付 | released 已发布 | closed 已关闭)；product(所属产品，示例：all)；branch(branch，示例：all)；grade(需求层级，示例：all)；plan(所属计划，示例：all)；release(所属发布，示例：all)；estimate(预计小时，示例：关键字)；source(来源，枚举：customer 客户 | user 用户 | po 产品经理 | market 市场 | service 客服 | operation 运营 | support 技术支持 | competitor 竞争对手 | partner 合作伙伴 | dev 开发人员 | tester 测试人员 | bug Bug | forum 论坛 | other 其他)；sourceNote(来源备注，示例：关键字)；fromBug(来源Bug，示例：关键字)；category(类别，枚举：feature 功能 | interface 接口 | performance 性能 | safe 安全 | experience 体验 | improve 改进 | other 其他)；openedBy(由谁创建，用户，示例：admin)；reviewedBy(已评审人，用户，示例：admin)；result(评审结果，枚举：pass 确认通过 | revert 撤销变更 | clarify 有待明确 | reject 拒绝)；assignedTo(指派给，用户，示例：admin)；closedBy(由谁关闭，用户，示例：admin)；lastEditedBy(最后修改，用户，示例：admin)；mailto(抄送给，用户，示例：admin)；closedReason(关闭原因，枚举：done 已完成 | subdivided 已拆分 | duplicate 重复 | postponed 延期 | willnotdo 不做 | cancel 已取消 | bydesign 设计如此)；version(版本号，示例：关键字)；openedDate(创建日期，示例：2026-01-01)；reviewedDate(评审时间，示例：2026-01-01)；assignedDate(指派日期，示例：2026-01-01)；closedDate(关闭日期，示例：2026-01-01)；lastEditedDate(最后修改日期，示例：2026-01-01)；activatedDate(激活日期，示例：2026-01-01)',
-                        style: 'deepObject',
-                        explode: true,
+                        "name": "filters",
+                        "required": false,
+                        "type": "array",
+                        "description": "搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：title(需求名称，示例：关键字)；id(编号，示例：1)；keywords(关键词，示例：关键字)；status(当前状态，枚举：draft 草稿 | reviewing 评审中 | active 激活 | changing 变更中 | closed 已关闭)；pri(优先级，枚举：1 | 2 | 3 | 4)；module(所属模块，示例：all)；stage(所处阶段，枚举：wait 未开始 | planned 已计划 | projected 研发立项 | designing 设计中 | designed 设计完毕 | developing 研发中 | developed 研发完毕 | testing 测试中 | tested 测试完毕 | verified 已验收 | rejected 验收失败 | delivering 交付中 | delivered 已交付 | released 已发布 | closed 已关闭)；product(所属产品，示例：all)；branch(branch，示例：all)；grade(需求层级，示例：all)；plan(所属计划，示例：all)；release(所属发布，示例：all)；estimate(预计小时，示例：关键字)；source(来源，枚举：customer 客户 | user 用户 | po 产品经理 | market 市场 | service 客服 | operation 运营 | support 技术支持 | competitor 竞争对手 | partner 合作伙伴 | dev 开发人员 | tester 测试人员 | bug Bug | forum 论坛 | other 其他)；sourceNote(来源备注，示例：关键字)；fromBug(来源Bug，示例：关键字)；category(类别，枚举：feature 功能 | interface 接口 | performance 性能 | safe 安全 | experience 体验 | improve 改进 | other 其他)；openedBy(由谁创建，用户，示例：admin)；reviewedBy(已评审人，用户，示例：admin)；result(评审结果，枚举：pass 确认通过 | revert 撤销变更 | clarify 有待明确 | reject 拒绝)；assignedTo(指派给，用户，示例：admin)；closedBy(由谁关闭，用户，示例：admin)；lastEditedBy(最后修改，用户，示例：admin)；mailto(抄送给，用户，示例：admin)；closedReason(关闭原因，枚举：done 已完成 | subdivided 已拆分 | duplicate 重复 | postponed 延期 | willnotdo 不做 | cancel 已取消 | bydesign 设计如此)；version(版本号，示例：关键字)；openedDate(创建日期，示例：2026-01-01)；reviewedDate(评审时间，示例：2026-01-01)；assignedDate(指派日期，示例：2026-01-01)；closedDate(关闭日期，示例：2026-01-01)；lastEditedDate(最后修改日期，示例：2026-01-01)；activatedDate(激活日期，示例：2026-01-01)",
+                        "style": "deepObject",
+                        "explode": true
                     },
                     {
-                        name: 'groupJoin',
-                        required: false,
-                        type: 'string',
-                        description: '条件组之间的连接方式',
-                        options: [
-                            { value: 'and', label: 'and' },
-                            { value: 'or', label: 'or' },
-                        ],
-                    },
+                        "name": "groupJoin",
+                        "required": false,
+                        "type": "string",
+                        "description": "条件组之间的连接方式",
+                        "options": [
+                            {
+                                "value": "and",
+                                "label": "and"
+                            },
+                            {
+                                "value": "or",
+                                "label": "or"
+                            }
+                        ]
+                    }
                 ],
             }, {
                 name: 'requirements',
@@ -11355,72 +11577,120 @@ export const BUILTIN_MODULES = [
                 resultGetter: 'requirements',
                 params: [
                     {
-                        name: 'param',
-                        required: false,
-                        type: 'string',
-                        description: '搜索参数；browseType=bysearch 或 bySearch 时必填。',
+                        "name": "param",
+                        "required": false,
+                        "type": "string",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。"
                     },
                     {
-                        name: 'browseType',
-                        required: false,
-                        type: 'string',
-                        description: '状态，默认是assignedTo，取值区分大小写',
-                        defaultValue: 'assignedTo',
-                        options: [
-                            { value: 'all', label: '全部' },
-                            { value: 'assignedTo', label: '指派给我' },
-                            { value: 'openedBy', label: '由我创建' },
-                            { value: 'reviewBy', label: '待我评审' },
-                            { value: 'reviewedBy', label: '我评审过' },
-                            { value: 'closedBy', label: '由我关闭' },
-                            { value: 'assignedBy', label: '由我指派' },
-                            { value: 'bysearch', label: '按查询搜索，需同时传 param' },
-                        ],
+                        "name": "browseType",
+                        "required": false,
+                        "type": "string",
+                        "description": "状态，默认是assignedTo，取值区分大小写",
+                        "defaultValue": "assignedTo",
+                        "options": [
+                            {
+                                "value": "all",
+                                "label": "全部"
+                            },
+                            {
+                                "value": "assignedTo",
+                                "label": "指派给我"
+                            },
+                            {
+                                "value": "openedBy",
+                                "label": "由我创建"
+                            },
+                            {
+                                "value": "reviewBy",
+                                "label": "待我评审"
+                            },
+                            {
+                                "value": "reviewedBy",
+                                "label": "我评审过"
+                            },
+                            {
+                                "value": "closedBy",
+                                "label": "由我关闭"
+                            },
+                            {
+                                "value": "assignedBy",
+                                "label": "由我指派"
+                            },
+                            {
+                                "value": "bysearch",
+                                "label": "按查询搜索，需同时传 param"
+                            }
+                        ]
                     },
                     {
-                        name: 'orderBy',
-                        required: false,
-                        type: 'string',
-                        description: '排序',
-                        options: [
-                            { value: 'id_asc', label: 'ID 升序' },
-                            { value: 'id_desc', label: 'ID 降序' },
-                            { value: 'title_asc', label: '标题 升序' },
-                            { value: 'title_desc', label: '标题 降序' },
-                            { value: 'status_asc', label: '状态 升序' },
-                            { value: 'status_desc', label: '状态 降序' },
-                        ],
+                        "name": "orderBy",
+                        "required": false,
+                        "type": "string",
+                        "description": "排序",
+                        "options": [
+                            {
+                                "value": "id_asc",
+                                "label": "ID 升序"
+                            },
+                            {
+                                "value": "id_desc",
+                                "label": "ID 降序"
+                            },
+                            {
+                                "value": "title_asc",
+                                "label": "标题 升序"
+                            },
+                            {
+                                "value": "title_desc",
+                                "label": "标题 降序"
+                            },
+                            {
+                                "value": "status_asc",
+                                "label": "状态 升序"
+                            },
+                            {
+                                "value": "status_desc",
+                                "label": "状态 降序"
+                            }
+                        ]
                     },
                     {
-                        name: 'recPerPage',
-                        required: false,
-                        type: 'number',
-                        description: '每页数量，不超过1000',
+                        "name": "recPerPage",
+                        "required": false,
+                        "type": "number",
+                        "description": "每页数量，不超过1000"
                     },
                     {
-                        name: 'pageID',
-                        required: false,
-                        type: 'number',
-                        description: '页码，从第1页开始',
+                        "name": "pageID",
+                        "required": false,
+                        "type": "number",
+                        "description": "页码，从第1页开始"
                     },
                     {
-                        name: 'filters',
-                        required: false,
-                        type: 'array',
-                        description: '搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：title(需求名称，示例：关键字)；id(编号，示例：1)；keywords(关键词，示例：关键字)；status(当前状态，枚举：draft 草稿 | reviewing 评审中 | active 激活 | changing 变更中 | closed 已关闭)；pri(优先级，枚举：1 | 2 | 3 | 4)；module(所属模块，示例：all)；stage(所处阶段，枚举：wait 未开始 | planned 已计划 | projected 研发立项 | designing 设计中 | designed 设计完毕 | developing 研发中 | developed 研发完毕 | testing 测试中 | tested 测试完毕 | verified 已验收 | rejected 验收失败 | delivering 交付中 | delivered 已交付 | released 已发布 | closed 已关闭)；product(所属产品，示例：all)；branch(branch，示例：all)；grade(需求层级，示例：all)；plan(所属计划，示例：all)；release(所属发布，示例：all)；estimate(预计小时，示例：关键字)；source(来源，枚举：customer 客户 | user 用户 | po 产品经理 | market 市场 | service 客服 | operation 运营 | support 技术支持 | competitor 竞争对手 | partner 合作伙伴 | dev 开发人员 | tester 测试人员 | bug Bug | forum 论坛 | other 其他)；sourceNote(来源备注，示例：关键字)；fromBug(来源Bug，示例：关键字)；category(类别，枚举：feature 功能 | interface 接口 | performance 性能 | safe 安全 | experience 体验 | improve 改进 | other 其他)；openedBy(由谁创建，用户，示例：admin)；reviewedBy(已评审人，用户，示例：admin)；result(评审结果，枚举：pass 确认通过 | revert 撤销变更 | clarify 有待明确 | reject 拒绝)；assignedTo(指派给，用户，示例：admin)；closedBy(由谁关闭，用户，示例：admin)；lastEditedBy(最后修改，用户，示例：admin)；mailto(抄送给，用户，示例：admin)；closedReason(关闭原因，枚举：done 已完成 | subdivided 已拆分 | duplicate 重复 | postponed 延期 | willnotdo 不做 | cancel 已取消 | bydesign 设计如此)；version(版本号，示例：关键字)；openedDate(创建日期，示例：2026-01-01)；reviewedDate(评审时间，示例：2026-01-01)；assignedDate(指派日期，示例：2026-01-01)；closedDate(关闭日期，示例：2026-01-01)；lastEditedDate(最后修改日期，示例：2026-01-01)；activatedDate(激活日期，示例：2026-01-01)',
-                        style: 'deepObject',
-                        explode: true,
+                        "name": "filters",
+                        "required": false,
+                        "type": "array",
+                        "description": "搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：title(需求名称，示例：关键字)；id(编号，示例：1)；keywords(关键词，示例：关键字)；status(当前状态，枚举：draft 草稿 | reviewing 评审中 | active 激活 | changing 变更中 | closed 已关闭)；pri(优先级，枚举：1 | 2 | 3 | 4)；module(所属模块，示例：all)；stage(所处阶段，枚举：wait 未开始 | planned 已计划 | projected 研发立项 | designing 设计中 | designed 设计完毕 | developing 研发中 | developed 研发完毕 | testing 测试中 | tested 测试完毕 | verified 已验收 | rejected 验收失败 | delivering 交付中 | delivered 已交付 | released 已发布 | closed 已关闭)；product(所属产品，示例：all)；branch(branch，示例：all)；grade(需求层级，示例：all)；plan(所属计划，示例：all)；release(所属发布，示例：all)；estimate(预计小时，示例：关键字)；source(来源，枚举：customer 客户 | user 用户 | po 产品经理 | market 市场 | service 客服 | operation 运营 | support 技术支持 | competitor 竞争对手 | partner 合作伙伴 | dev 开发人员 | tester 测试人员 | bug Bug | forum 论坛 | other 其他)；sourceNote(来源备注，示例：关键字)；fromBug(来源Bug，示例：关键字)；category(类别，枚举：feature 功能 | interface 接口 | performance 性能 | safe 安全 | experience 体验 | improve 改进 | other 其他)；openedBy(由谁创建，用户，示例：admin)；reviewedBy(已评审人，用户，示例：admin)；result(评审结果，枚举：pass 确认通过 | revert 撤销变更 | clarify 有待明确 | reject 拒绝)；assignedTo(指派给，用户，示例：admin)；closedBy(由谁关闭，用户，示例：admin)；lastEditedBy(最后修改，用户，示例：admin)；mailto(抄送给，用户，示例：admin)；closedReason(关闭原因，枚举：done 已完成 | subdivided 已拆分 | duplicate 重复 | postponed 延期 | willnotdo 不做 | cancel 已取消 | bydesign 设计如此)；version(版本号，示例：关键字)；openedDate(创建日期，示例：2026-01-01)；reviewedDate(评审时间，示例：2026-01-01)；assignedDate(指派日期，示例：2026-01-01)；closedDate(关闭日期，示例：2026-01-01)；lastEditedDate(最后修改日期，示例：2026-01-01)；activatedDate(激活日期，示例：2026-01-01)",
+                        "style": "deepObject",
+                        "explode": true
                     },
                     {
-                        name: 'groupJoin',
-                        required: false,
-                        type: 'string',
-                        description: '条件组之间的连接方式',
-                        options: [
-                            { value: 'and', label: 'and' },
-                            { value: 'or', label: 'or' },
-                        ],
-                    },
+                        "name": "groupJoin",
+                        "required": false,
+                        "type": "string",
+                        "description": "条件组之间的连接方式",
+                        "options": [
+                            {
+                                "value": "and",
+                                "label": "and"
+                            },
+                            {
+                                "value": "or",
+                                "label": "or"
+                            }
+                        ]
+                    }
                 ],
             }, {
                 name: 'testtasks',
@@ -11434,48 +11704,72 @@ export const BUILTIN_MODULES = [
                 resultGetter: 'testtasks',
                 params: [
                     {
-                        name: 'param',
-                        required: false,
-                        type: 'string',
-                        description: '搜索参数；browseType=bysearch 或 bySearch 时必填。',
+                        "name": "param",
+                        "required": false,
+                        "type": "string",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。"
                     },
                     {
-                        name: 'browseType',
-                        required: false,
-                        type: 'string',
-                        description: '状态，默认是assignedTo，接口固定返回“我参与的未完成测试单”',
-                        defaultValue: 'assignedTo',
-                        options: [
-                            { value: 'assignedTo', label: '我参与的' },
-                            { value: 'bySearch', label: '按查询搜索，需同时传 param' },
-                        ],
+                        "name": "browseType",
+                        "required": false,
+                        "type": "string",
+                        "description": "状态，默认是assignedTo，接口固定返回“我参与的未完成测试单”",
+                        "defaultValue": "assignedTo",
+                        "options": [
+                            {
+                                "value": "assignedTo",
+                                "label": "我参与的"
+                            },
+                            {
+                                "value": "bySearch",
+                                "label": "按查询搜索，需同时传 param"
+                            }
+                        ]
                     },
                     {
-                        name: 'orderBy',
-                        required: false,
-                        type: 'string',
-                        description: '排序',
-                        options: [
-                            { value: 'id_asc', label: 'ID 升序' },
-                            { value: 'id_desc', label: 'ID 降序' },
-                            { value: 'name_asc', label: '名称 升序' },
-                            { value: 'name_desc', label: '名称 降序' },
-                            { value: 'status_asc', label: '状态 升序' },
-                            { value: 'status_desc', label: '状态 降序' },
-                        ],
+                        "name": "orderBy",
+                        "required": false,
+                        "type": "string",
+                        "description": "排序",
+                        "options": [
+                            {
+                                "value": "id_asc",
+                                "label": "ID 升序"
+                            },
+                            {
+                                "value": "id_desc",
+                                "label": "ID 降序"
+                            },
+                            {
+                                "value": "name_asc",
+                                "label": "名称 升序"
+                            },
+                            {
+                                "value": "name_desc",
+                                "label": "名称 降序"
+                            },
+                            {
+                                "value": "status_asc",
+                                "label": "状态 升序"
+                            },
+                            {
+                                "value": "status_desc",
+                                "label": "状态 降序"
+                            }
+                        ]
                     },
                     {
-                        name: 'recPerPage',
-                        required: false,
-                        type: 'number',
-                        description: '每页数量，不超过1000',
+                        "name": "recPerPage",
+                        "required": false,
+                        "type": "number",
+                        "description": "每页数量，不超过1000"
                     },
                     {
-                        name: 'pageID',
-                        required: false,
-                        type: 'number',
-                        description: '页码，从第1页开始',
-                    },
+                        "name": "pageID",
+                        "required": false,
+                        "type": "number",
+                        "description": "页码，从第1页开始"
+                    }
                 ],
             }, {
                 name: 'projects',
@@ -11694,67 +11988,100 @@ export const BUILTIN_MODULES = [
                 resultGetter: 'testcases',
                 params: [
                     {
-                        name: 'param',
-                        required: false,
-                        type: 'string',
-                        description: '搜索参数；browseType=bysearch 或 bySearch 时必填。',
+                        "name": "param",
+                        "required": false,
+                        "type": "string",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。"
                     },
                     {
-                        name: 'browseType',
-                        required: false,
-                        type: 'string',
-                        description: '状态，默认是assigntome',
-                        defaultValue: 'assigntome',
-                        options: [
-                            { value: 'assigntome', label: '指派给我' },
-                            { value: 'openedbyme', label: '我创建的' },
-                            { value: 'bysearch', label: '按查询搜索，需同时传 param' },
-                        ],
+                        "name": "browseType",
+                        "required": false,
+                        "type": "string",
+                        "description": "状态，默认是assigntome",
+                        "defaultValue": "assigntome",
+                        "options": [
+                            {
+                                "value": "assigntome",
+                                "label": "指派给我"
+                            },
+                            {
+                                "value": "openedbyme",
+                                "label": "我创建的"
+                            },
+                            {
+                                "value": "bysearch",
+                                "label": "按查询搜索，需同时传 param"
+                            }
+                        ]
                     },
                     {
-                        name: 'orderBy',
-                        required: false,
-                        type: 'string',
-                        description: '排序',
-                        options: [
-                            { value: 'id_asc', label: 'ID 升序' },
-                            { value: 'id_desc', label: 'ID 降序' },
-                            { value: 'title_asc', label: '标题 升序' },
-                            { value: 'title_desc', label: '标题 降序' },
-                            { value: 'status_asc', label: '状态 升序' },
-                            { value: 'status_desc', label: '状态 降序' },
-                        ],
+                        "name": "orderBy",
+                        "required": false,
+                        "type": "string",
+                        "description": "排序",
+                        "options": [
+                            {
+                                "value": "id_asc",
+                                "label": "ID 升序"
+                            },
+                            {
+                                "value": "id_desc",
+                                "label": "ID 降序"
+                            },
+                            {
+                                "value": "title_asc",
+                                "label": "标题 升序"
+                            },
+                            {
+                                "value": "title_desc",
+                                "label": "标题 降序"
+                            },
+                            {
+                                "value": "status_asc",
+                                "label": "状态 升序"
+                            },
+                            {
+                                "value": "status_desc",
+                                "label": "状态 降序"
+                            }
+                        ]
                     },
                     {
-                        name: 'recPerPage',
-                        required: false,
-                        type: 'number',
-                        description: '每页数量，不超过1000',
+                        "name": "recPerPage",
+                        "required": false,
+                        "type": "number",
+                        "description": "每页数量，不超过1000"
                     },
                     {
-                        name: 'pageID',
-                        required: false,
-                        type: 'number',
-                        description: '页码，从第1页开始',
+                        "name": "pageID",
+                        "required": false,
+                        "type": "number",
+                        "description": "页码，从第1页开始"
                     },
                     {
-                        name: 'filters',
-                        required: false,
-                        type: 'array',
-                        description: '搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：title(用例名称，示例：关键字)；story(关联需求，示例：all)；id(用例编号，示例：1)；keywords(关键词，示例：关键字)；lastEditedBy(修改者，用户，示例：admin)；type(用例类型，枚举：unit 单元测试 | interface 接口测试 | feature 功能测试 | install 安装部署 | config 配置相关 | performance 性能测试 | security 安全相关 | other 其他)；auto(自动化，枚举：auto 是 | no 否)；openedBy(由谁创建，用户，示例：admin)；status(用例状态，枚举：wait 待评审 | normal 正常 | blocked 被阻塞 | investigate 研究中)；product(所属产品，示例：all)；branch(branch，示例：all)；stage(适用环节，枚举：unittest 单元测试环节 | feature 功能测试环节 | intergrate 集成测试环节 | system 系统测试环节 | smoke 冒烟测试环节 | bvt 版本验证环节)；module(所属模块，模块，示例：0)；pri(优先级，枚举：3 | 1 | 2 | 4)；lib(所属库，示例：all)；lastRunner(执行人，用户，示例：admin)；lastRunResult(结果，枚举：pass 通过 | fail 失败 | blocked 阻塞 | null 未执行)；lastRunDate(执行时间，示例：2026-01-01)；openedDate(创建日期，示例：2026-01-01)；lastEditedDate(修改日期，示例：2026-01-01)；scene(所属场景，示例：all)',
-                        style: 'deepObject',
-                        explode: true,
+                        "name": "filters",
+                        "required": false,
+                        "type": "array",
+                        "description": "搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：title(用例名称，示例：关键字)；story(关联需求，示例：all)；id(用例编号，示例：1)；keywords(关键词，示例：关键字)；lastEditedBy(修改者，用户，示例：admin)；type(用例类型，枚举：unit 单元测试 | interface 接口测试 | feature 功能测试 | install 安装部署 | config 配置相关 | performance 性能测试 | security 安全相关 | other 其他)；auto(自动化，枚举：auto 是 | no 否)；openedBy(由谁创建，用户，示例：admin)；status(用例状态，枚举：wait 待评审 | normal 正常 | blocked 被阻塞 | investigate 研究中)；product(所属产品，示例：all)；branch(branch，示例：all)；stage(适用环节，枚举：unittest 单元测试环节 | feature 功能测试环节 | intergrate 集成测试环节 | system 系统测试环节 | smoke 冒烟测试环节 | bvt 版本验证环节)；module(所属模块，模块，示例：0)；pri(优先级，枚举：3 | 1 | 2 | 4)；lib(所属库，示例：all)；lastRunner(执行人，用户，示例：admin)；lastRunResult(结果，枚举：pass 通过 | fail 失败 | blocked 阻塞 | null 未执行)；lastRunDate(执行时间，示例：2026-01-01)；openedDate(创建日期，示例：2026-01-01)；lastEditedDate(修改日期，示例：2026-01-01)；scene(所属场景，示例：all)",
+                        "style": "deepObject",
+                        "explode": true
                     },
                     {
-                        name: 'groupJoin',
-                        required: false,
-                        type: 'string',
-                        description: '条件组之间的连接方式',
-                        options: [
-                            { value: 'and', label: 'and' },
-                            { value: 'or', label: 'or' },
-                        ],
-                    },
+                        "name": "groupJoin",
+                        "required": false,
+                        "type": "string",
+                        "description": "条件组之间的连接方式",
+                        "options": [
+                            {
+                                "value": "and",
+                                "label": "and"
+                            },
+                            {
+                                "value": "or",
+                                "label": "or"
+                            }
+                        ]
+                    }
                 ],
             }, {
                 name: 'meetings',
@@ -11819,54 +12146,96 @@ export const BUILTIN_MODULES = [
                 resultGetter: 'issues',
                 params: [
                     {
-                        name: 'param',
-                        required: false,
-                        type: 'string',
-                        description: '搜索参数；browseType=bysearch 或 bySearch 时必填。',
+                        "name": "param",
+                        "required": false,
+                        "type": "string",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。"
                     },
                     {
-                        name: 'browseType',
-                        required: false,
-                        type: 'string',
-                        description: '状态，默认是assignedTo，取值取自 zt_issue 的字段名',
-                        defaultValue: 'assignedTo',
-                        options: [
-                            { value: 'assignedTo', label: '指派给我' },
-                            { value: 'createdBy', label: '由我创建' },
-                            { value: 'resolvedBy', label: '由我解决' },
-                            { value: 'closedBy', label: '由我关闭' },
-                            { value: 'assignedBy', label: '由我指派' },
-                            { value: 'bysearch', label: '按查询搜索，需同时传 param' },
-                        ],
+                        "name": "browseType",
+                        "required": false,
+                        "type": "string",
+                        "description": "状态，默认是assignedTo，取值取自 zt_issue 的字段名",
+                        "defaultValue": "assignedTo",
+                        "options": [
+                            {
+                                "value": "assignedTo",
+                                "label": "指派给我"
+                            },
+                            {
+                                "value": "createdBy",
+                                "label": "由我创建"
+                            },
+                            {
+                                "value": "resolvedBy",
+                                "label": "由我解决"
+                            },
+                            {
+                                "value": "closedBy",
+                                "label": "由我关闭"
+                            },
+                            {
+                                "value": "assignedBy",
+                                "label": "由我指派"
+                            },
+                            {
+                                "value": "bysearch",
+                                "label": "按查询搜索，需同时传 param"
+                            }
+                        ]
                     },
                     {
-                        name: 'orderBy',
-                        required: false,
-                        type: 'string',
-                        description: '排序',
-                        options: [
-                            { value: 'id_asc', label: 'ID 升序' },
-                            { value: 'id_desc', label: 'ID 降序' },
-                            { value: 'title_asc', label: '标题 升序' },
-                            { value: 'title_desc', label: '标题 降序' },
-                            { value: 'severity_asc', label: '严重程度 升序' },
-                            { value: 'severity_desc', label: '严重程度 降序' },
-                            { value: 'status_asc', label: '状态 升序' },
-                            { value: 'status_desc', label: '状态 降序' },
-                        ],
+                        "name": "orderBy",
+                        "required": false,
+                        "type": "string",
+                        "description": "排序",
+                        "options": [
+                            {
+                                "value": "id_asc",
+                                "label": "ID 升序"
+                            },
+                            {
+                                "value": "id_desc",
+                                "label": "ID 降序"
+                            },
+                            {
+                                "value": "title_asc",
+                                "label": "标题 升序"
+                            },
+                            {
+                                "value": "title_desc",
+                                "label": "标题 降序"
+                            },
+                            {
+                                "value": "severity_asc",
+                                "label": "严重程度 升序"
+                            },
+                            {
+                                "value": "severity_desc",
+                                "label": "严重程度 降序"
+                            },
+                            {
+                                "value": "status_asc",
+                                "label": "状态 升序"
+                            },
+                            {
+                                "value": "status_desc",
+                                "label": "状态 降序"
+                            }
+                        ]
                     },
                     {
-                        name: 'recPerPage',
-                        required: false,
-                        type: 'number',
-                        description: '每页数量，不超过1000',
+                        "name": "recPerPage",
+                        "required": false,
+                        "type": "number",
+                        "description": "每页数量，不超过1000"
                     },
                     {
-                        name: 'pageID',
-                        required: false,
-                        type: 'number',
-                        description: '页码，从第1页开始',
-                    },
+                        "name": "pageID",
+                        "required": false,
+                        "type": "number",
+                        "description": "页码，从第1页开始"
+                    }
                 ],
             }, {
                 name: 'risks',
@@ -11880,71 +12249,116 @@ export const BUILTIN_MODULES = [
                 resultGetter: 'risks',
                 params: [
                     {
-                        name: 'param',
-                        required: false,
-                        type: 'string',
-                        description: '搜索参数；browseType=bysearch 或 bySearch 时必填。',
+                        "name": "param",
+                        "required": false,
+                        "type": "string",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。"
                     },
                     {
-                        name: 'browseType',
-                        required: false,
-                        type: 'string',
-                        description: '状态，默认是assignedTo，取值取自 zt_risk 的字段名',
-                        defaultValue: 'assignedTo',
-                        options: [
-                            { value: 'assignedTo', label: '指派给我' },
-                            { value: 'createdBy', label: '由我创建' },
-                            { value: 'closedBy', label: '由我关闭' },
-                            { value: 'assignedBy', label: '由我指派' },
-                            { value: 'bysearch', label: '按查询搜索，需同时传 param' },
-                        ],
+                        "name": "browseType",
+                        "required": false,
+                        "type": "string",
+                        "description": "状态，默认是assignedTo，取值取自 zt_risk 的字段名",
+                        "defaultValue": "assignedTo",
+                        "options": [
+                            {
+                                "value": "assignedTo",
+                                "label": "指派给我"
+                            },
+                            {
+                                "value": "createdBy",
+                                "label": "由我创建"
+                            },
+                            {
+                                "value": "closedBy",
+                                "label": "由我关闭"
+                            },
+                            {
+                                "value": "assignedBy",
+                                "label": "由我指派"
+                            },
+                            {
+                                "value": "bysearch",
+                                "label": "按查询搜索，需同时传 param"
+                            }
+                        ]
                     },
                     {
-                        name: 'orderBy',
-                        required: false,
-                        type: 'string',
-                        description: '排序',
-                        options: [
-                            { value: 'id_asc', label: 'ID 升序' },
-                            { value: 'id_desc', label: 'ID 降序' },
-                            { value: 'name_asc', label: '名称 升序' },
-                            { value: 'name_desc', label: '名称 降序' },
-                            { value: 'status_asc', label: '状态 升序' },
-                            { value: 'status_desc', label: '状态 降序' },
-                            { value: 'pri_asc', label: '优先级 升序' },
-                            { value: 'pri_desc', label: '优先级 降序' },
-                        ],
+                        "name": "orderBy",
+                        "required": false,
+                        "type": "string",
+                        "description": "排序",
+                        "options": [
+                            {
+                                "value": "id_asc",
+                                "label": "ID 升序"
+                            },
+                            {
+                                "value": "id_desc",
+                                "label": "ID 降序"
+                            },
+                            {
+                                "value": "name_asc",
+                                "label": "名称 升序"
+                            },
+                            {
+                                "value": "name_desc",
+                                "label": "名称 降序"
+                            },
+                            {
+                                "value": "status_asc",
+                                "label": "状态 升序"
+                            },
+                            {
+                                "value": "status_desc",
+                                "label": "状态 降序"
+                            },
+                            {
+                                "value": "pri_asc",
+                                "label": "优先级 升序"
+                            },
+                            {
+                                "value": "pri_desc",
+                                "label": "优先级 降序"
+                            }
+                        ]
                     },
                     {
-                        name: 'recPerPage',
-                        required: false,
-                        type: 'number',
-                        description: '每页数量，不超过1000',
+                        "name": "recPerPage",
+                        "required": false,
+                        "type": "number",
+                        "description": "每页数量，不超过1000"
                     },
                     {
-                        name: 'pageID',
-                        required: false,
-                        type: 'number',
-                        description: '页码，从第1页开始',
+                        "name": "pageID",
+                        "required": false,
+                        "type": "number",
+                        "description": "页码，从第1页开始"
                     },
                     {
-                        name: 'filters',
-                        required: false,
-                        type: 'array',
-                        description: '搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：activateBy,actualClosedDate,assignedTo,cancelBy,category,createdBy,createdDate,editedBy,editedDate,hangupBy,id,identifiedDate,impact,name,plannedClosedDate,prevention,pri,probability,project,rate,remedy,resolution,resolvedBy,source,status,strategy,trackedBy',
-                        style: 'deepObject',
-                        explode: true,
+                        "name": "filters",
+                        "required": false,
+                        "type": "array",
+                        "description": "搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：activateBy,actualClosedDate,assignedTo,cancelBy,category,createdBy,createdDate,editedBy,editedDate,hangupBy,id,identifiedDate,impact,name,plannedClosedDate,prevention,pri,probability,project,rate,remedy,resolution,resolvedBy,source,status,strategy,trackedBy",
+                        "style": "deepObject",
+                        "explode": true
                     },
                     {
-                        name: 'groupJoin',
-                        required: false,
-                        type: 'string',
-                        description: '条件组之间的连接方式',
-                        options: [
-                            { value: 'and', label: 'and' },
-                            { value: 'or', label: 'or' },
-                        ],
-                    },
+                        "name": "groupJoin",
+                        "required": false,
+                        "type": "string",
+                        "description": "条件组之间的连接方式",
+                        "options": [
+                            {
+                                "value": "and",
+                                "label": "and"
+                            },
+                            {
+                                "value": "or",
+                                "label": "or"
+                            }
+                        ]
+                    }
                 ],
             }, {
                 name: 'activityTasks',
@@ -12588,61 +13002,82 @@ export const BUILTIN_MODULES = [
                 resultGetter: 'reviewissues',
                 params: [
                     {
-                        name: 'param',
-                        required: false,
-                        type: 'string',
-                        description: '搜索参数；browseType=bysearch 或 bySearch 时必填。',
+                        "name": "param",
+                        "required": false,
+                        "type": "string",
+                        "description": "搜索参数；browseType=bysearch 或 bySearch 时必填。"
                     },
                     {
-                        name: 'browseType',
-                        required: false,
-                        type: 'string',
-                        description: '待处理筛选类型，默认 assignedTo，取值取自 zt_reviewissue 的字段名',
-                        defaultValue: 'assignedTo',
-                        options: [
-                            { value: 'assignedTo', label: '指派给我' },
-                            { value: 'createdBy', label: '由我创建' },
-                            { value: 'resolutionBy', label: '由我解决' },
-                            { value: 'assignedBy', label: '由我指派' },
-                            { value: 'bysearch', label: '按查询搜索，需同时传 param' },
-                        ],
+                        "name": "browseType",
+                        "required": false,
+                        "type": "string",
+                        "description": "待处理筛选类型，默认 assignedTo，取值取自 zt_reviewissue 的字段名",
+                        "defaultValue": "assignedTo",
+                        "options": [
+                            {
+                                "value": "assignedTo",
+                                "label": "指派给我"
+                            },
+                            {
+                                "value": "createdBy",
+                                "label": "由我创建"
+                            },
+                            {
+                                "value": "resolutionBy",
+                                "label": "由我解决"
+                            },
+                            {
+                                "value": "assignedBy",
+                                "label": "由我指派"
+                            },
+                            {
+                                "value": "bysearch",
+                                "label": "按查询搜索，需同时传 param"
+                            }
+                        ]
                     },
                     {
-                        name: 'orderBy',
-                        required: false,
-                        type: 'string',
-                        description: '排序字段。',
+                        "name": "orderBy",
+                        "required": false,
+                        "type": "string",
+                        "description": "排序字段。"
                     },
                     {
-                        name: 'recPerPage',
-                        required: false,
-                        type: 'number',
-                        description: '每页数量，不超过1000',
+                        "name": "recPerPage",
+                        "required": false,
+                        "type": "number",
+                        "description": "每页数量，不超过1000"
                     },
                     {
-                        name: 'pageID',
-                        required: false,
-                        type: 'number',
-                        description: '页码，从第1页开始',
+                        "name": "pageID",
+                        "required": false,
+                        "type": "number",
+                        "description": "页码，从第1页开始"
                     },
                     {
-                        name: 'filters',
-                        required: false,
-                        type: 'array',
-                        description: '搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：assignedDate,assignedTo,createdBy,createdDate,id,opinion,resolution,review,status,title,type',
-                        style: 'deepObject',
-                        explode: true,
+                        "name": "filters",
+                        "required": false,
+                        "type": "array",
+                        "description": "搜索条件数组，每项包含 field/operator/value/join/group；field 必须是该接口支持的搜索字段，operator 使用该接口搜索配置支持的操作符。支持搜索字段：assignedDate,assignedTo,createdBy,createdDate,id,opinion,resolution,review,status,title,type",
+                        "style": "deepObject",
+                        "explode": true
                     },
                     {
-                        name: 'groupJoin',
-                        required: false,
-                        type: 'string',
-                        description: '条件组之间的连接方式',
-                        options: [
-                            { value: 'and', label: 'and' },
-                            { value: 'or', label: 'or' },
-                        ],
-                    },
+                        "name": "groupJoin",
+                        "required": false,
+                        "type": "string",
+                        "description": "条件组之间的连接方式",
+                        "options": [
+                            {
+                                "value": "and",
+                                "label": "and"
+                            },
+                            {
+                                "value": "or",
+                                "label": "or"
+                            }
+                        ]
+                    }
                 ],
             }, {
                 name: 'audits',
@@ -13075,7 +13510,7 @@ export const BUILTIN_MODULES = [
                         "status": "wait",
                         "isCycle": 0,
                         "checkDateList": [
-                            "2026-10-15"
+                            "2026-10-17"
                         ],
                         "assignedToList": [
                             "admin"
@@ -13225,7 +13660,7 @@ export const BUILTIN_MODULES = [
                             "activity"
                         ],
                         "checkDate": [
-                            "2026-10-16"
+                            "2026-10-18"
                         ],
                         "assignedTo": [
                             "admin"
@@ -13594,7 +14029,7 @@ export const BUILTIN_MODULES = [
                         "listID": 1,
                         "severity": 2,
                         "assignedTo": "admin",
-                        "deadline": "2026-10-21",
+                        "deadline": "2026-10-23",
                         "desc": "<p>补充检查记录。</p>"
                     },
                 },
@@ -13790,8 +14225,8 @@ export const BUILTIN_MODULES = [
                         "chance": 3,
                         "ratio": 9,
                         "pri": 2,
-                        "identifiedDate": "2026-10-14",
-                        "plannedClosedDate": "2026-11-03",
+                        "identifiedDate": "2026-10-16",
+                        "plannedClosedDate": "2026-11-05",
                         "assignedTo": "admin",
                         "desc": "<p>发现可复用的项目机会。</p>",
                         "prevention": "<p>持续跟踪并推进机会落地。</p>"
@@ -14016,7 +14451,7 @@ export const BUILTIN_MODULES = [
     {
         name: 'deliverable',
         display: '交付物',
-        description: '交付物管理，支持获取交付物列表，支持获取项目下的交付物、新增项目交付物、获取交付物详情、删除项目交付物',
+        description: '交付物管理，支持获取交付物列表，支持获取项目下的交付物、获取项目可选交付物列表、新增项目交付物、获取交付物详情、删除项目交付物',
         actions: [
             {
                 name: 'list',
@@ -14039,13 +14474,16 @@ export const BUILTIN_MODULES = [
                         description: '交付物筛选类型，默认 normal',
                         defaultValue: 'normal',
                         options: [
-                            { value: 'normal', label: '全部' },
-                            { value: 'pending', label: '待提交' },
+                            { value: 'normal', label: '已提交' },
+                            { value: 'wait', label: '未提交' },
+                            { value: 'mine', label: '我提交' },
+                            { value: 'submitbyme', label: '由我发起' },
+                            { value: 'pending', label: '待评审' },
                             { value: 'pendingme', label: '待我评审' },
-                            { value: 'submitbyme', label: '我提交的' },
-                            { value: 'reviewedbyme', label: '我评审过的' },
-                            { value: 'pass', label: '已通过' },
-                            { value: 'fail', label: '未通过' },
+                            { value: 'reviewing', label: '评审中' },
+                            { value: 'reviewedbyme', label: '我评审过' },
+                            { value: 'pass', label: '评审通过' },
+                            { value: 'fail', label: '评审失败' },
                             { value: 'bymodule', label: '按模块' },
                             { value: 'bysearch', label: '搜索' },
                         ],
@@ -14078,6 +14516,19 @@ export const BUILTIN_MODULES = [
                         defaultValue: '1',
                     },
                 ],
+            }, {
+                name: 'options',
+                minVersion: ['22.7', 'biz13.7', 'max8.7', 'ipd5.7'],
+                display: '获取项目可选交付物列表',
+                type: 'get',
+                method: 'get',
+                path: '/projects/{projectID}/deliverable-options',
+                resultType: 'object',
+                resultGetter: 'deliverables',
+                pathParams: {
+                    projectID: '项目ID',
+                },
+                description: '获取当前项目流程下可以提交的交付物定义。返回结果中 deliverables 的属性名为交付物定义 ID，值为交付物名称，可用于创建项目交付物。',
             }, {
                 name: 'create',
                 minVersion: ['22.7', 'biz13.7', 'max8.7', 'ipd5.7'],
@@ -14275,7 +14726,7 @@ export const BUILTIN_MODULES = [
                         "title": "API 基线",
                         "version": "V1.0",
                         "category": [
-                            13
+                            1
                         ],
                         "type": "taged",
                         "status": "wait"
@@ -14340,7 +14791,7 @@ export const BUILTIN_MODULES = [
                         "title": "API 基线（已编辑）",
                         "version": "V1.1",
                         "category": [
-                            13
+                            1
                         ],
                         "comment": "通过 API 编辑"
                     },
@@ -14568,7 +15019,7 @@ export const BUILTIN_MODULES = [
     {
         name: 'relation',
         display: '对象关联',
-        description: '对象关联管理，支持关联对象、查询可关联对象、查询关联对象、删除关联对象',
+        description: '对象关联管理，支持关联对象、查询可关联对象、查询关联对象、删除关联关系',
         actions: [
             {
                 name: 'link',
@@ -14664,18 +15115,15 @@ export const BUILTIN_MODULES = [
             }, {
                 name: 'unlink',
                 minVersion: ['22.7', 'biz13.7', 'max8.7', 'ipd5.7'],
-                display: '删除关联对象',
+                display: '删除关联关系',
                 type: 'delete',
                 method: 'delete',
-                path: '/relations/{objectType}/{objectID}/{relatedObjectType}/{relatedObjectID}/{relationName}',
+                path: '/relations/{relationID}',
                 resultType: 'text',
                 pathParams: {
-                    objectType: 'objectType',
-                    objectID: 'objectID',
-                    relatedObjectType: 'relatedObjectType',
-                    relatedObjectID: 'relatedObjectID',
-                    relationName: 'relationName',
+                    relationID: 'relationID',
                 },
+                description: '根据关系记录 ID 删除自定义关联关系。relationID 从查询关联对象接口返回的 relations[].relationID 字段获取，只有 relationType 为 custom 的自定义关系可以删除。',
             }
         ],
     },
@@ -15972,6 +16420,7 @@ export type BuiltinActionMeta = {
     };
     deliverable: {
         list: { resultType: 'list' };
+        options: { resultType: 'object' };
         create: { resultType: 'object' };
         get: { resultType: 'object' };
         delete: { resultType: 'text' };
