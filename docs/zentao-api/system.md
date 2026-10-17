@@ -120,8 +120,8 @@ Schema:
   "productID": 1,
   "integrated": 0,
   "children": [],
-  "name": "smart-20261014045806",
-  "desc": "smart-20261014045806"
+  "name": "smart-20261016055323",
+  "desc": "smart-20261016055323"
 }
 ```
 
@@ -198,9 +198,9 @@ Schema:
 
 ```json
 {
-  "name": "smart-20261014045806-updated",
+  "name": "smart-20261016055323-updated",
   "children": [],
-  "desc": "smart-20261014045806-updated"
+  "desc": "smart-20261016055323-updated"
 }
 ```
 

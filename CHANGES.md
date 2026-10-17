@@ -1,5 +1,29 @@
 # 变更日志
 
+## 0.8.1 - 2026-10-17
+
+### 新增
+
+- 新增 `deliverable/options`，按项目查询可提交的交付物定义，返回定义 ID 到名称的映射对象，与已提交交付物的分页列表独立。
+
+### 修复
+
+- 在 OpenAPI 更新后保留地盘十个搜索接口的 `param` 和未完成待办的 `status` 查询参数，避免规范遗漏导致兼容参数无法发送。
+
+### 变更
+
+- **兼容性变更**：`relation/unlink` 改为必传 `relationID`，发送 `DELETE /relations/{relationID}`，不再接受原来的五个路径参数；关系记录 ID 从 `relation/list` 返回的 `relations[].relationID` 获取，仅支持删除 `relationType` 为 `custom` 的自定义关系。
+- 交付物列表新增 `wait`、`mine`、`reviewing` 筛选项，更新已有选项说明；`normal`、`pending`、`submitbyme` 分别表示已提交、待评审和由我发起，默认值仍为 `normal`。
+- 同步交付物详情 `docInfo` 从字符串数组改为字符串的响应契约，以及关联列表的 `relationID`、`relationKey` 字段说明。
+
+### 测试
+
+- 增加交付物候选对象与分页列表、筛选选项、按关系 ID 删除及旧参数校验、全部 11 个兼容查询参数、返回类型推导和版本数量的回归覆盖。
+
+### 文档
+
+- 新增 2026-10-16 OpenAPI 增量变更清单，说明关联删除迁移、交付物接口和查询参数兼容处理，并重新生成 SDK 参考与禅道 API 模块文档。
+
 ## 0.8.0 - 2026-10-14
 
 ### 新增

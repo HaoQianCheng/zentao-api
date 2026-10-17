@@ -123,7 +123,7 @@ Schema:
   "title": "API 基线",
   "version": "V1.0",
   "category": [
-    13
+    1
   ],
   "type": "taged",
   "status": "wait"
@@ -247,7 +247,7 @@ Schema:
   "title": "API 基线（已编辑）",
   "version": "V1.1",
   "category": [
-    13
+    1
   ],
   "comment": "通过 API 编辑"
 }

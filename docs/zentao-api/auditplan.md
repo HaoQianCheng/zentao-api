@@ -160,7 +160,7 @@ Schema:
   "status": "wait",
   "isCycle": 0,
   "checkDateList": [
-    "2026-10-15"
+    "2026-10-17"
   ],
   "assignedToList": [
     "admin"
@@ -389,7 +389,7 @@ Schema:
     "activity"
   ],
   "checkDate": [
-    "2026-10-16"
+    "2026-10-18"
   ],
   "assignedTo": [
     "admin"

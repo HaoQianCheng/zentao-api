@@ -340,7 +340,7 @@ Schema:
 
 ```json
 {
-  "realEnd": "2026-10-14"
+  "realEnd": "2026-10-16"
 }
 ```
 
@@ -796,8 +796,8 @@ Schema:
   "probability": 3,
   "rate": 9,
   "pri": 2,
-  "identifiedDate": "2026-10-14",
-  "plannedClosedDate": "2026-11-03",
+  "identifiedDate": "2026-10-16",
+  "plannedClosedDate": "2026-11-05",
   "assignedTo": "admin",
   "prevention": "<p>提前识别并跟踪。</p>",
   "remedy": "<p>出现风险后及时响应。</p>"

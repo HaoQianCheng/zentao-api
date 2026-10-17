@@ -1,6 +1,6 @@
 # 对象关联 (relation)
 
-对象关联管理，支持关联对象、查询可关联对象、查询关联对象、删除关联对象
+对象关联管理，支持关联对象、查询可关联对象、查询关联对象、删除关联关系
 
 ## 动作概览
 
@@ -9,7 +9,7 @@
 | `link` | 关联对象 | `POST` | `/relations/{objectType}/{objectID}/{relatedObjectType}` |
 | `candidates` | 查询可关联对象 | `GET` | `/relations/{objectType}/{objectID}/candidates/{relatedObjectType}` |
 | `list` | 查询关联对象 | `GET` | `/relations/{objectType}/{objectID}` |
-| `unlink` | 删除关联对象 | `DELETE` | `/relations/{objectType}/{objectID}/{relatedObjectType}/{relatedObjectID}/{relationName}` |
+| `unlink` | 删除关联关系 | `DELETE` | `/relations/{relationID}` |
 
 ## 关联对象
 
@@ -168,10 +168,12 @@ const result = await request("relation/list", {
   "objectID": 1
 });
 ```
-## 删除关联对象
+## 删除关联关系
+
+根据关系记录 ID 删除自定义关联关系。relationID 从查询关联对象接口返回的 relations[].relationID 字段获取，只有 relationType 为 custom 的自定义关系可以删除。
 
 - SDK 调用：`request("relation/unlink", params)`
-- HTTP：`DELETE /relations/{objectType}/{objectID}/{relatedObjectType}/{relatedObjectID}/{relationName}`
+- HTTP：`DELETE /relations/{relationID}`
 - 动作类型：`delete`
 - 最低禅道版本：`22.7` / `biz13.7` / `max8.7` / `ipd5.7`
 
@@ -179,11 +181,7 @@ const result = await request("relation/list", {
 
 | 参数 | 说明 |
 | --- | --- |
-| `objectType` | objectType |
-| `objectID` | objectID |
-| `relatedObjectType` | relatedObjectType |
-| `relatedObjectID` | relatedObjectID |
-| `relationName` | relationName |
+| `relationID` | relationID |
 
 ### 查询参数
 
@@ -203,10 +201,6 @@ const result = await request("relation/list", {
 import { request } from 'zentao-api';
 
 const result = await request("relation/unlink", {
-  "objectType": "<string>",
-  "objectID": 1,
-  "relatedObjectType": "<string>",
-  "relatedObjectID": 1,
-  "relationName": "<string>"
+  "relationID": 1
 });
 ```

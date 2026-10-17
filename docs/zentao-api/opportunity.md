@@ -174,8 +174,8 @@ Schema:
   "chance": 3,
   "ratio": 9,
   "pri": 2,
-  "identifiedDate": "2026-10-14",
-  "plannedClosedDate": "2026-11-03",
+  "identifiedDate": "2026-10-16",
+  "plannedClosedDate": "2026-11-05",
   "assignedTo": "admin",
   "desc": "<p>发现可复用的项目机会。</p>",
   "prevention": "<p>持续跟踪并推进机会落地。</p>"

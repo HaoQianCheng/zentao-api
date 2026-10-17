@@ -380,7 +380,7 @@ Schema:
   "listID": 1,
   "severity": 2,
   "assignedTo": "admin",
-  "deadline": "2026-10-21",
+  "deadline": "2026-10-23",
   "desc": "<p>补充检查记录。</p>"
 }
 ```
